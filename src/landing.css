@@ -1987,28 +1987,6 @@ a:hover {
   color: var(--muted);
 }
 
-/* ---------- pricing ---------- */
-
-.pricing .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
-  padding-top: 56px;
-  padding-bottom: 56px;
-}
-
-.pricing-line {
-  font-family: var(--serif-body);
-  font-size: 18px;
-  line-height: 1.62;
-  color: var(--ink-soft);
-  max-width: 62ch;
-  margin: 20px 0 0;
-}
-
-.pricing-line b {
-  font-weight: 500;
-  color: var(--ink);
-}
-
 /* ---------- footer ---------- */
 
 .footer .wrap {
