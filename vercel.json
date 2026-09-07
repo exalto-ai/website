@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "https://seal.exalto.ai/docs",
+      "permanent": true
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": "https://seal.exalto.ai/docs/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(favicon.svg|pot-mark-white.svg|pot-mark-blue.svg|pot-tile.svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(art|icons)/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ]
+}

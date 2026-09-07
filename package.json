@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "npm run check:copy && vite build",
     "check:copy": "node scripts/check-copy.mjs",
-    "test:redirects": "sh scripts/test-docs-redirects.sh",
+    "test:redirects": "node scripts/test-vercel-config.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

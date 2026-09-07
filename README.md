@@ -12,7 +12,7 @@ links point at that origin by default and can be changed at build time with
 `VITE_PRODUCT_ORIGIN`.
 
 The public user guides live only at [Exalto Seal docs](https://seal.exalto.ai/docs).
-The production Caddy server permanently redirects `/docs`
+Vercel permanently redirects `/docs`
 and `/docs/*` to the product origin, preserving paths and queries. The image's
 `EXALTO_PRODUCT_ORIGIN` build argument supplies both the links and redirects;
 it must be an origin without a trailing slash.
@@ -44,37 +44,11 @@ rendered copy.
 - The applications grid ships with the pointillist Ledger Grain art from
   `public/art/`; product marks used on the page live in `public/icons/`.
 
-## Deploy (Fly)
+## Deploy (Vercel)
 
-The `Deploy website` workflow builds the image on Fly, pins it to a `sha256`
-digest, deploys it, verifies the site serves, and restores the previous digest
-if anything fails. It is manual-only until `FLY_LANDING_DEPLOY_TOKEN` is added
-to this repository's `production` environment. The copy audit runs inside the
-image build, so a banned term fails the build before production changes; the
-same audit runs on pull requests through the `Website` CI job.
+The Vercel project is connected to this GitHub repository. Pull requests get
+preview deployments and pushes to `main` deploy to production. Vercel detects
+Vite and publishes `dist/`; redirects and cache headers live in `vercel.json`.
 
-The landing site is deliberately not part of the gated three-service promotion
-in `deploy.yml`; see the landing rollout section of `deploy/fly/README.md`.
-
-To deploy from a workstation instead:
-
-```bash
-fly deploy . \
-  --config fly.toml \
-  --app exalto-prod-landing
-```
-
-Cutover checklist (founder-owned, in order):
-
-1. Create the Fly app, allocate a dedicated IPv4 and an IPv6, store the
-   `FLY_LANDING_DEPLOY_TOKEN` repository secret, then add the DNS records and
-   issue certs. `deploy/fly/README.md` has the exact commands. The first
-   rollout happens on the next push to `main`; `exalto.ai` is an apex name, so
-   it takes `A`/`AAAA` records rather than a CNAME.
-2. Add `seal.exalto.ai` as a cert/hostname on the existing web app and switch
-   its `NOTARY_PUBLIC_ORIGIN`/`VITE_PUBLIC_ORIGIN` build arg when ready.
-3. 301 `notary.exalto.ai` to `seal.exalto.ai` on the old hostname.
-4. Update OAuth redirect URIs (Google, GitHub), the Stripe webhook URL, and the
-   product site's hardcoded install command.
-5. Later, move the notary endpoint hostname (`alice.notary.exalto.ai`) with a
-   Registry generation bump; it keeps working unchanged until then.
+The custom domain is configured separately in Vercel when exalto.ai is ready
+to move from its current host.
