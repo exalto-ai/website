@@ -11,8 +11,8 @@ assert.deepEqual(config.redirects, [
     permanent: true,
   },
   {
-    source: '/docs/:path*',
-    destination: 'https://seal.exalto.ai/docs/:path*',
+    source: '/docs/(.*)',
+    destination: 'https://seal.exalto.ai/docs/$1',
     permanent: true,
   },
 ]);
