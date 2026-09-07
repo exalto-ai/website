@@ -1,0 +1,28 @@
+# Exalto
+
+> The open evidence layer for AI interactions. Capture an AI session on your machine, seal it with an independent notary, and let anyone verify it. Days of conversations, one record to show for them.
+
+Exalto builds the Exalto Notary Protocol (ENP): an open standard for provable AI interactions. The core capability is proving that a conversation with an AI provider happened exactly as claimed, portably and independently verifiably. The protocol relays the session's encrypted, authenticated provider connection through a notary that witnesses exactly what crossed the wire without ever being able to read it. Nothing readable ever leaves your machine.
+
+The three verbs: capture, seal, verify. A capture is the local recording of a session; sealing closes it into a countersigned, timestamped portable trace (a `.llmtrace` file, the receipt you hand over); verification is an open, offline check anyone can run, free, unlimited, anonymous, forever.
+
+## Products
+
+- Exalto Notary Protocol (ENP): the open standard: the `.llmtrace` format (canonical OpenTelemetry trace inside), capture and disclosure rules, the offline open-source verifier, and the reference runtime. Built on TLSNotary.
+- Exalto Capture: the free desktop recorder. Works with Claude Code, Codex, and supported provider SDKs today.
+- Exalto Seal: Exalto's operated notary. Countersigns and timestamps; never sees plaintext. Just one notary among many to come: seal with ours, with a third party's, or with one you run yourself. Hosted verification and shared-trace pages live under Seal: a shared trace shows as Exalto Seal Verified.
+- Proof of Thought: a first-party writing app that keeps an authorship ledger: verified model output, tracked local contribution. Early access.
+
+## Limits, stated plainly
+
+A trace proves presence, never absence. It proves the disclosed bytes traveled an authenticated connection with the named provider, that they have not changed since capture, and that the named notary witnessed them at the stated time. It cannot prove that every interaction was captured or disclosed, who was at the keyboard, that no other AI was used, or that an output was correct.
+
+## Links
+
+- Docs and spec: https://seal.exalto.ai/docs
+- Hosted product: https://seal.exalto.ai
+- Verify a trace: https://seal.exalto.ai/verify
+- Example traces: https://seal.exalto.ai/traces
+- Notary registry: https://seal.exalto.ai/registry
+- Open runtime: https://github.com/exalto-ai/notary-runtime
+- TLSNotary: https://tlsnotary.org

@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exalto · The open protocol for provable AI interactions</title>
+<meta name="description" content="Capture your AI sessions on your machine, seal them with independent notaries, and let anyone verify them. Days of conversations, one record to show for them.">
+<meta name="theme-color" content="#f5f3ec">
+<link rel="canonical" href="https://exalto.ai/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Exalto overview">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exalto.ai/">
+<meta property="og:site_name" content="Exalto">
+<meta property="og:title" content="Exalto · The open protocol for provable AI interactions">
+<meta property="og:description" content="Capture your AI sessions on your machine, seal them with independent notaries, and let anyone verify them.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Exalto · The open protocol for provable AI interactions">
+<meta name="twitter:description" content="Capture your AI sessions on your machine, seal them with independent notaries, and let anyone verify them.">
+<script type="module" src="/src/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-wrap">
+    <a class="brand" href="/" aria-label="Exalto home">
+      <span class="brand-wordmark">Exalto</span>
+      <span class="brand-tagline">VERIFICATION UNBOUND</span>
+    </a>
+    <nav class="nav-menu" aria-label="Primary">
+      <a href="#applications">Apps</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#trust">Trust</a>
+      <a href="#pricing">Pricing</a>
+      <a class="nav-cta" href="#pot">Try Proof of Thought</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-ledger" aria-hidden="true">
+      <div class="hero-ledger-feed" data-ledger>
+        <div class="ledger-half">
+          <div class="ledger-row is-dim"><span class="ledger-who ledger-you">YOU · JUL 14</span><span class="ledger-msg-you">Here's my thesis so far. Where is it weakest?</span></div>
+          <div class="ledger-row is-dim is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Three weaknesses: claim two assumes causality; the sources stop at 2019; no counter-argument.</span></div>
+          <div class="ledger-row is-dim"><span class="ledger-who ledger-you">YOU · JUL 16</span><span class="ledger-msg-you">Rewrote the opening myself. Check the logic, not the style.</span></div>
+          <div class="ledger-row is-dim is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">The syllogism in ¶3 holds. You cite the study but not its replication failure.</span></div>
+          <div class="ledger-row is-dim" data-compact><span class="ledger-who ledger-you">YOU · JUL 18</span><span class="ledger-msg-you">Find me the replication paper.</span></div>
+          <div class="ledger-row is-dim is-model" data-compact><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Two candidates. The 2023 attempt failed on sample size. Cite with care.</span></div>
+          <div class="ledger-row is-dim"><span class="ledger-who ledger-you">YOU · JUL 22</span><span class="ledger-msg-you">Draft two attached. I cut your version of the intro.</span></div>
+          <div class="ledger-row is-dim is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Noted. Draft saved: draft_2.md · 1,904 words.</span></div>
+          <div class="ledger-row is-dim" data-compact><span class="ledger-who ledger-you">YOU · JUL 26</span><span class="ledger-msg-you">The middle sags. Tighten ¶6 without losing the caveat.</span></div>
+          <div class="ledger-row is-dim is-model" data-compact><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Tightened. The caveat now leads the paragraph instead of trailing it.</span></div>
+          <div class="ledger-row is-live"><span class="ledger-who ledger-you">YOU · AUG 02</span><span class="ledger-surfaced-you">Give me the strongest counter-argument. I want to answer it, not dodge it.</span><span class="ledger-chip ledger-chip-you">TRACKED LOCALLY</span></div>
+          <div class="ledger-row is-live is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-surfaced-model">The strongest objection is timing: certification proves the exchange, not the intent behind it…</span><span class="ledger-chip ledger-chip-model is-pulsing">SEALED ✓ · WITNESSED 14:02 UTC</span></div>
+          <div class="ledger-row is-dim"><span class="ledger-who ledger-you">YOU · AUG 05</span><span class="ledger-msg-you">Too neat. I'll rewrite the second half in my own cadence.</span></div>
+          <div class="ledger-row is-dim is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Kept your phrasing. Flagged one dangling citation in ¶9.</span></div>
+          <div class="ledger-row is-dim" data-compact><span class="ledger-who ledger-you">YOU · AUG 09</span><span class="ledger-msg-you">Read it as a skeptic. What would you flag first?</span></div>
+          <div class="ledger-row is-dim is-model" data-compact><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">The conclusion overreaches by one adverb: “definitively.”</span></div>
+          <div class="ledger-row is-dim"><span class="ledger-who ledger-you">YOU · AUG 12</span><span class="ledger-msg-you">Fair. Cut it.</span></div>
+          <div class="ledger-row is-dim is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Cut. Draft saved: draft_5.md · 2,118 words · your edits pending.</span></div>
+          <div class="ledger-row is-dim" data-compact><span class="ledger-who ledger-you">YOU · AUG 15</span><span class="ledger-msg-you">Does the counter-argument section still answer ¶2?</span></div>
+          <div class="ledger-row is-dim is-model" data-compact><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Yes, and it now cites the replication failure directly.</span></div>
+          <div class="ledger-row is-dim"><span class="ledger-who ledger-you">YOU · AUG 17</span><span class="ledger-msg-you">Final read-through. Don't touch the prose, just flag anything I broke.</span></div>
+          <div class="ledger-row is-dim is-model"><span class="ledger-who ledger-model">MODEL</span><span class="ledger-msg-model">Nothing broken. Session sealed: 47 messages, 6 drafts, signer Seal.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-fore">
+      <div class="hero-center">
+        <p class="hero-pill">EXALTO NOTARY PROTOCOL · RECORDING<span class="hero-pill-cursor" aria-hidden="true"></span></p>
+        <h1>Days of conversations. <br> One record to show for them.</h1>
+        <p class="hero-sub">Every prompt and reply, captured on your machine as it happens, then reveal exactly the lines you choose. Anyone can verify.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-navy" href="#pot">Write with Proof of Thought</a>
+          <a class="btn btn-ink" href="#get-started">Capture your AI sessions</a>
+          <a class="btn btn-ghost" href="%PRODUCT_ORIGIN%/docs">Read the spec</a>
+        </div>
+        <p class="hero-note">VERIFICATION TOOLS FOR YOUR AI INTERACTIONS</p>
+      </div>
+    </div>
+    <div class="hero-legend" aria-label="Attribution legend">
+      <span><i class="legend-swatch legend-you" aria-hidden="true"></i>YOU · TRACKED LOCALLY</span>
+      <span><i class="legend-swatch legend-model" aria-hidden="true"></i>MODEL · VERIFIED &amp; SEALED</span>
+      <span><i class="legend-swatch legend-faded" aria-hidden="true"></i>FADED · SEALED, UNDISCLOSED</span>
+    </div>
+  </section>
+
+  <!-- ============================== PROOF OF THOUGHT BAND ============================== -->
+  <section class="pot" id="pot" aria-labelledby="pot-title">
+    <div class="wrap pot-wrap">
+      <div class="pot-head">
+        <div class="pot-head-copy">
+          <img class="pot-band-mark" src="/pot-mark-white.svg" alt="" width="36" height="36">
+          <p class="eyebrow eyebrow-mint">PROOF OF THOUGHT · THE FIRST APP ON TOP OF THE EXALTO NOTARY PROTOCOL</p>
+          <h2 id="pot-title">Show the delta, not just the draft.</h2>
+          <p class="pot-sub">A text editor that knows which words came from the model and which came from you: every exchange sealed as it happened, every contribution tracked locally.</p>
+          <div class="pot-head-ctas">
+          <span class="pot-join">
+            <span class="btn btn-phosphor" aria-disabled="true" title="Early access opens soon">Request early access</span>
+            <span class="pot-soon">early access · coming soon</span>
+          </span>
+            <a class="pot-ledger-link" href="%PRODUCT_ORIGIN%/traces">See a ledger entry →</a>
+          </div>
+        </div>
+        <aside class="thought-score" aria-label="PoT score">
+          <div class="ts-head"><span>POT SCORE</span><span class="ts-ledger">VERIFIED ✓</span></div>
+          <div class="ts-verdict">
+            <p class="ts-claim">Verified human</p>
+            <p class="ts-claim-sub">2,118 words · Draft 5</p>
+          </div>
+          <div class="ts-gauge">
+            <svg viewBox="0 0 180 180" aria-hidden="true">
+              <path class="ts-gauge-track" d="M34.85 145.15 A78 78 0 1 1 145.15 145.15"></path>
+              <path class="ts-gauge-value" d="M34.85 145.15 A78 78 0 1 1 145.15 145.15"></path>
+            </svg>
+            <div class="ts-gauge-center">
+              <img src="/pot-tile.svg" alt="" width="28" height="28">
+              <p class="ts-gauge-number">61<span>%</span></p>
+              <p class="ts-gauge-caption">of this draft is yours</p>
+            </div>
+          </div>
+          <p class="ts-anti">From the sealed ledger, not a detector's guess.</p>
+          <div class="ts-rule" aria-hidden="true"></div>
+          <p class="ts-label">Details</p>
+          <dl class="ts-facts">
+            <div><dt>Writing time</dt><dd>12h 36m</dd></div>
+            <div><dt>Sessions</dt><dd>6 · over two weeks</dd></div>
+            <div><dt>Back-and-forths</dt><dd>230 </dd></div>
+            <div class="ts-fact-sealed"><dt>Ledger</dt><dd>sealed ✓</dd></div>
+          </dl>
+        </aside>
+      </div>
+      <div class="pot-editor-frame">
+        <div class="pot-editor">
+          <div class="editor-titlebar">
+            <span class="editor-light" aria-hidden="true"></span>
+            <span class="editor-light" aria-hidden="true"></span>
+            <span class="editor-light" aria-hidden="true"></span>
+            <img class="editor-mark" src="/pot-mark-white.svg" alt="" width="14" height="14">
+            <span class="editor-title">Answering the timing objection · Draft 5</span>
+            <span class="editor-status"><span class="editor-sealed">SEALED ✓</span><span class="editor-dot" aria-hidden="true"></span></span>
+          </div>
+          <div class="editor-toolbar">
+            <div class="editor-tools" aria-hidden="true">
+              <span class="tool"><b>B</b></span>
+              <span class="tool"><i>I</i></span>
+              <span class="tool-divider"></span>
+              <span class="tool tool-small">H1</span>
+              <span class="tool tool-small">H2</span>
+              <span class="tool">❝</span>
+              <span class="tool">≡</span>
+            </div>
+            <div class="editor-legend">
+              <span><i class="legend-swatch legend-you-dark" aria-hidden="true"></i>YOU</span>
+              <span><i class="legend-swatch legend-model-dark" aria-hidden="true"></i>AI</span>
+              <span class="editor-hint">HOVER A PASSAGE FOR ITS HISTORY</span>
+            </div>
+          </div>
+          <div class="editor-page">
+            <p class="editor-doc-title">Answering the timing objection</p>
+            <p class="editor-prose">The detector said a machine wrote this. The ledger says something more precise: <span class="passage passage-model">a first draft arrived at 11:42,</span> <span class="passage passage-you">then forty minutes of my own revisions;</span> <span class="passage passage-model">a counter-argument I asked for,</span> <span class="passage-live-wrap"><button type="button" class="passage passage-you passage-trigger" aria-describedby="history-pop" aria-expanded="false">kept, cut in half, and rewritten in my own cadence.</button><span class="pot-popover" id="history-pop" role="tooltip" hidden>
+              <span class="pop-label">CONTRIBUTION HISTORY · ¶1</span>
+              <span class="pop-rows">
+                <span class="pop-row"><i class="pop-dot pop-dot-model" aria-hidden="true"></i>11:42 · model draft · 34 words</span>
+                <span class="pop-row"><i class="pop-dot pop-dot-you" aria-hidden="true"></i>12:22 · you rewrote 21 of them</span>
+                <span class="pop-row"><i class="pop-check" aria-hidden="true">✓</i>12:24 · revision sealed</span>
+              </span>
+              <a class="pop-link" href="%PRODUCT_ORIGIN%/traces">view full trace →</a>
+            </span></span></p>
+            <p class="editor-prose"><span class="passage passage-model">The strongest objection is timing: certification proves the exchange happened, not the intent behind it.</span> <span class="passage passage-you">I answer it with process: six weeks of it, sealed as it ran</span><span class="editor-caret" aria-hidden="true"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PROTOCOL ============================== -->
+  <section class="section protocol" id="protocol" aria-labelledby="protocol-title">
+    <div class="wrap">
+      <p class="eyebrow">EXALTO NOTARY PROTOCOL (ENP) · <span class="eyebrow-blue">OPEN SOURCE</span></p>
+      <h2 class="display" id="protocol-title">The open protocol for provable AI interactions.</h2>
+      <p class="lede">For the first time, you can prove a conversation with an AI happened <b>exactly as you say it did</b>, and prove it to anyone, forever. Not a screenshot. Not an export. Real proof.</p>
+      <div class="diagram-desktop">
+        <svg viewBox="0 0 960 450" role="img" aria-label="Protocol diagram: your session with the AI provider is relayed through an independent notary that witnesses it encrypted and cannot read it; after the session a signed, timestamped receipt returns to your machine; when you choose, you seal the trace and hand it to anyone, who can verify it offline with open tools.">
+          <defs>
+            <marker id="m-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:rgba(26,34,51,.45)"></path></marker>
+            <marker id="m-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:#1e4a73"></path></marker>
+          </defs>
+          <path class="flow flow-ink" d="M320,148 C450,148 520,176 640,190" style="marker-end:url(#m-ink)"></path>
+          <path class="flow flow-ink" d="M640,212 C520,216 450,172 320,172" style="marker-end:url(#m-ink)"></path>
+          <text class="flow-label" x="470" y="126"><tspan class="flow-number">01</tspan> · your session · encrypted end to end</text>
+          <path class="flow flow-blue" d="M772,176 C772,162 772,146 772,134" style="marker-end:url(#m-blue)"></path>
+          <path class="flow flow-blue-soft" d="M808,134 C808,146 808,162 808,174" style="marker-end:url(#m-blue)"></path>
+          <text class="flow-note" x="758" y="159" style="text-anchor:end">same session · relayed</text>
+          <text class="flow-label" x="470" y="240"><tspan class="flow-number">02</tspan> · relayed on, witnessed as ciphertext</text>
+          <path class="flow flow-blue-soft" d="M640,262 C520,264 460,270 320,270" style="marker-end:url(#m-blue)"></path>
+          <text class="flow-label" x="470" y="294"><tspan class="flow-number">03</tspan> · a receipt returns · signed &amp; timestamped</text>
+          <path class="flow flow-blue flow-wide" d="M320,322 C470,322 520,372 640,372" style="marker-end:url(#m-blue)"></path>
+          <text class="flow-label" x="470" y="392"><tspan class="flow-number">04</tspan> · the trace · only when you choose</text>
+          <rect class="party-card" x="20" y="64" width="300" height="312" rx="4"></rect>
+          <text class="party-eyebrow" x="44" y="96">YOU</text>
+          <text class="party-name" x="44" y="123">Your machine</text>
+          <image href="/icons/exalto-capture-tile.svg" x="278" y="78" width="26" height="26"></image>
+          <line x1="44" y1="140" x2="296" y2="140" style="stroke:rgba(26,34,51,.07)"></line>
+          <text class="party-note" x="44" y="166">the session, recorded as it runs</text>
+          <rect x="44" y="184" width="252" height="66" rx="3" style="fill:#f5f3ec;stroke:rgba(26,34,51,.13);stroke-dasharray:3 3"></rect>
+          <text class="party-mono" x="58" y="210">essay-draft.trace</text>
+          <text class="party-note" x="58" y="230">every message, in order</text>
+          <text class="party-note" x="44" y="292">one portable file</text>
+          <text class="party-note" x="44" y="312">email it · submit it · file it</text>
+          <circle cx="48" cy="349" r="3" style="fill:#1e4a73"></circle>
+          <text class="party-blue" x="60" y="353">your content stays here</text>
+          <rect class="party-card" x="640" y="36" width="300" height="96" rx="4"></rect>
+          <text class="party-eyebrow" x="664" y="66">THE AI PROVIDER</text>
+          <text class="party-name" x="664" y="93">Anthropic, OpenAI, etc.</text>
+          <text class="party-note" x="664" y="116">no cooperation required · <tspan class="party-blue">TLS ✓</tspan></text>
+          <rect class="party-card" x="640" y="176" width="300" height="112" rx="4"></rect>
+          <text class="party-eyebrow" x="664" y="206">THE NOTARY</text>
+          <text class="party-name" x="664" y="233">Exalto Seal or compatible</text>
+          <image href="/icons/exalto-seal-192.png" x="898" y="190" width="26" height="26"></image>
+          <text class="party-note" x="664" y="256">countersigns + timestamps</text>
+          <rect x="662" y="264" width="158" height="20" rx="10" style="fill:rgba(30,74,115,.09);stroke:rgba(30,74,115,.35)"></rect>
+          <text class="party-pill" x="741" y="278">never sees plaintext</text>
+          <rect x="640" y="328" width="300" height="96" rx="4" style="fill:rgba(30,74,115,.06);stroke:rgba(30,74,115,.4)"></rect>
+          <text class="party-eyebrow" x="664" y="358">ANYONE</text>
+          <text class="party-name" x="664" y="385">Client, court, professor...</text>
+          <text class="party-note" x="664" y="408">open tools · offline · free · <tspan class="party-blue">no account</tspan></text>
+          <circle cx="906" cy="376" r="14" style="fill:#1e4a73"></circle>
+          <path d="M899,376 l5,5 l9,-10" style="fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"></path>
+        </svg>
+      </div>
+      <div class="diagram-stack" aria-label="Protocol diagram, stacked">
+        <div class="stack-card">
+          <img class="stack-card-icon" src="/icons/exalto-capture-tile.svg" alt="" width="24" height="24">
+          <p class="party-eyebrow-h">YOU</p>
+          <p class="party-name-h">Your machine</p>
+          <p class="party-note-h">the session, recorded as it runs · one portable file: email it · submit it · file it</p>
+          <p class="party-blue-h">● your content stays here</p>
+        </div>
+        <p class="stack-flow"><span class="flow-number">01</span> ⇅ your session · encrypted end to end<br><span class="flow-number">03</span> ↑ a receipt returns · signed &amp; timestamped</p>
+        <div class="stack-card">
+          <img class="stack-card-icon" src="/icons/exalto-seal-192.png" alt="" width="24" height="24">
+          <p class="party-eyebrow-h">THE NOTARY</p>
+          <p class="party-name-h">Exalto Seal or compatible</p>
+          <p class="party-note-h">countersigns + timestamps</p>
+          <p class="party-pill-h">never sees plaintext</p>
+        </div>
+        <p class="stack-flow"><span class="flow-number">02</span> ⇅ relayed on, witnessed as ciphertext</p>
+        <div class="stack-card">
+          <p class="party-eyebrow-h">THE AI PROVIDER</p>
+          <p class="party-name-h">Anthropic, OpenAI, etc.</p>
+          <p class="party-note-h">no cooperation required · <span class="party-blue-h">TLS ✓</span></p>
+        </div>
+        <p class="stack-flow"><span class="flow-number">04</span> ↓ the trace, from your machine · only when you choose</p>
+        <div class="stack-card stack-card-anyone">
+          <p class="party-eyebrow-h">ANYONE</p>
+          <p class="party-name-h">Client, court, professor...</p>
+          <p class="party-note-h">open tools · offline · free · <span class="party-blue-h">no account</span></p>
+        </div>
+      </div>
+      <p class="diagram-caption">The session already happens. <span class="caption-blue">Everything in blue is what the protocol adds: the witness in its path, the receipt, the portable, verified trace.</span></p>
+    </div>
+  </section>
+
+  <!-- ============================== BREAKTHROUGH ============================== -->
+  <section class="section breakthrough" aria-labelledby="breakthrough-title">
+    <div class="wrap">
+      <p class="section-label">A VERIFICATION BREAKTHROUGH<span class="dash-rule" aria-hidden="true"></span></p>
+      <h2 id="breakthrough-title">A transcript is just text. <br> A sealed trace is proof.</h2>
+      <p class="body-copy">Anyone can type a transcript, edit one, screenshot one. That's why “here's what the AI said” does not count.</p>
+      <p class="body-copy">The insight: your session already runs over an encrypted, authenticated connection to the AI provider. The protocol relays that session through an independent notary that <b>witnesses exactly what crossed the wire</b> without ever being able to read it. Old cryptography, pointed at a new problem.</p>
+      <div class="stamps">
+        <article class="stamp"><p class="stamp-label"><i aria-hidden="true"></i>PROVENANCE</p><p>It came from that AI provider.</p></article>
+        <article class="stamp"><p class="stamp-label"><i aria-hidden="true"></i>INTEGRITY</p><p>It hasn't been changed.</p></article>
+        <article class="stamp"><p class="stamp-label"><i aria-hidden="true"></i>TIME</p><p>It existed by that moment.</p></article>
+      </div>
+      <p class="privacy-law">Nothing readable ever leaves your machine. <span class="caption-blue">Nobody, including us, sees your work.</span></p>
+      <p class="credit-line">The cryptography is <a href="https://tlsnotary.org">TLSNotary</a>, open source. More in the <a href="%PRODUCT_ORIGIN%/docs">spec</a>.</p>
+    </div>
+  </section>
+
+  <!-- ============================== APPLICATIONS ============================== -->
+  <section class="section applications" id="applications" aria-labelledby="applications-title">
+    <div class="wrap">
+      <p class="section-label">APPLICATIONS<span class="dash-rule" aria-hidden="true"></span></p>
+      <h2 id="applications-title">A platform for verified applications.</h2>
+      <p class="body-copy">Anything built on sealed traces inherits their proof. Proof of Thought is the first app. The rest is for you to build.</p>
+      <div class="app-grid">
+        <article class="tile tile-first-party">
+          <div class="tile-art"><img src="/art/pot.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <img class="tile-app-icon" src="/pot-tile.svg" alt="" width="40" height="40">
+          <p class="tile-audience tile-audience-blue"><i aria-hidden="true"></i>WRITING</p>
+          <h3>Proof of Thought</h3>
+          <p>A writing app that keeps an authorship ledger: verified model output, your tracked contributions, imports. Prove your delta.</p>
+          <span class="tile-chip">EARLY ACCESS</span>
+          <a class="tile-link" href="#pot">sign up →</a>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/flagged-essay.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>AUTHORS &amp; STUDENTS</p>
+          <h3>The flagged essay</h3>
+          <p>A detector says AI. Weeks of sealed drafts and revisions say otherwise, and anyone can check.</p>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/audited-commit.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>DEVELOPERS</p>
+          <h3>The audited commit</h3>
+          <p>Your agents write code all day. When a commit ships a bug, faces an audit, or lands in diligence, the sealed session behind it is the proof you need. Works with Codex and Claude Code today.</p>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/certified-trace.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>DOMAIN EXPERTS: LAW, FINANCE &amp; ACCOUNTING</p>
+          <h3>The certified trace</h3>
+          <p>Clients ask how AI touched the work. Attach the sealed trace as the exhibit.</p>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/agent-flight-recorder.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>SECURITY TEAMS</p>
+          <h3>The agent flight recorder</h3>
+          <p>When an agent misbehaves, self-kept logs can be altered. Sealed-as-it-happened records cannot.</p>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/discovery-archive.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>ENTERPRISES</p>
+          <h3>The certified discovery archive</h3>
+          <p>Authenticated AI records for when litigation, audits, or regulators come asking.</p>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/published-eval.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>RESEARCHERS</p>
+          <h3>The published eval</h3>
+          <p>Post the trace with the paper. The model really said it, and screenshot disputes are over.</p>
+        </article>
+        <article class="tile">
+          <div class="tile-art"><img src="/art/take-home.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience"><i aria-hidden="true"></i>CANDIDATES &amp; EMPLOYERS</p>
+          <h3>The take-home</h3>
+          <p>The assignment says AI is allowed, within limits. A sealed trace shows exactly how you used it, and the hiring panel can check.</p>
+        </article>
+        <article class="tile tile-build">
+          <div class="tile-art"><img src="/art/yours-to-build.webp" alt="" width="1000" height="333" loading="lazy"></div>
+          <p class="tile-audience tile-audience-blue"><i aria-hidden="true"></i>DEVELOPERS</p>
+          <h3>Yours to build</h3>
+          <p>Sealed traces are a new primitive. The spec, the OpenTelemetry trace format, and the verifier are open.</p>
+          <a class="tile-link" href="%PRODUCT_ORIGIN%/docs">build on the Exalto Notary Protocol →</a>
+        </article>
+      </div>
+      <ul class="chip-row" aria-label="More use cases">
+        <li>journal disclosure</li>
+        <li>grant submissions</li>
+        <li>chatbot disputes</li>
+        <li>the lab notebook</li>
+        <li>vendor proof packs</li>
+        <li>clinical records</li>
+        <li>freelance &amp; agency invoices</li>
+        <li>prompt-injection forensics</li>
+        <li>tax preparer diligence</li>
+        <li>insurance evidence</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== GET STARTED ============================== -->
+  <section class="section get-started" id="get-started" aria-labelledby="get-started-title">
+    <div class="wrap">
+      <p class="section-label">START CAPTURING YOUR TRACES<span class="dash-rule" aria-hidden="true"></span></p>
+      <div class="gs-grid">
+        <div class="gs-copy">
+          <h2 id="get-started-title">Verified material starts with Exalto Capture.</h2>
+          <p class="body-copy"><b>Exalto Capture is a dashcam for your AI work.</b> Start it, point Claude Code, Codex, or your own tools at it, and every session is recorded on your machine, witnessed by the notary you select at setup. When you need proof, seal the trace and hand it to anyone.</p>
+          <p class="body-copy">Until that day, it's just a folder on your computer that nobody, including the notary, can read.</p>
+          <div class="gs-ctas">
+            <a class="btn btn-ink" href="%PRODUCT_ORIGIN%/docs/getting-started">Download Exalto Capture</a>
+            <a class="btn btn-ghost" href="%PRODUCT_ORIGIN%/traces">See example traces</a>
+          </div>
+        </div>
+        <div class="receipt" aria-label="Example sealed trace receipt">
+          <div class="receipt-head"><span>Sealed trace · receipt</span><span class="receipt-state">sealed ✓<i class="receipt-dot" aria-hidden="true"></i></span></div>
+          <dl class="receipt-rows">
+            <div><dt>trace</dt><dd>essay-draft.trace</dd></div>
+            <div><dt>provider</dt><dd class="receipt-blue">api.openai.com · TLS ✓</dd></div>
+            <div><dt>messages</dt><dd>47</dd></div>
+            <div><dt>sessions</dt><dd>6 · all sealed</dd></div>
+            <div><dt>sha-256</dt><dd>9f2c 71e0 ···· d3a4 1b8c</dd></div>
+            <div><dt>witnessed</dt><dd>2026-08-24 14:02:11 UTC</dd></div>
+            <div><dt>notary</dt><dd>seal.exalto.ai</dd></div>
+          </dl>
+          <p class="receipt-verified"><span class="receipt-check" aria-hidden="true">✓</span> Verified with the open source verifier</p>
+          <p class="receipt-verified-sub">offline · no account · anyone can run</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ECOSYSTEM ============================== -->
+  <section class="section ecosystem" aria-labelledby="ecosystem-title">
+    <div class="wrap">
+      <p class="section-label">THE ECOSYSTEM<span class="dash-rule" aria-hidden="true"></span></p>
+      <h2 id="ecosystem-title">An open protocol. A choice of notary.</h2>
+      <p class="body-copy">One standard at the base. Tools, notaries, and apps stack on top.</p>
+      <div class="eco-stack">
+        <div class="eco-layer">
+          <p class="eco-rail">APP LAYER</p>
+          <div class="eco-cards eco-cards-two">
+            <article class="eco-card eco-card-ours eco-card-pot">
+              <img class="eco-card-icon" src="/pot-tile.svg" alt="" width="26" height="26">
+              <p class="eco-eyebrow eco-eyebrow-blue">WRITING</p>
+              <h3>Proof of Thought</h3>
+              <p>Keeps the authorship ledger.</p>
+              <a class="eco-link" href="#pot">early access →</a>
+            </article>
+            <article class="eco-card eco-card-dashed">
+              <p class="eco-eyebrow">ANYONE'S</p>
+              <h3>Yours to build</h3>
+              <p>The primitives are open.</p>
+              <a class="eco-link" href="%PRODUCT_ORIGIN%/docs">build →</a>
+            </article>
+          </div>
+        </div>
+        <p class="eco-connector">↓ BUILT ON SEALED TRACES</p>
+        <div class="eco-layer">
+          <p class="eco-rail">ON YOUR MACHINE</p>
+          <div class="eco-machine">
+            <div class="capture-window">
+              <div class="capture-titlebar">
+                <span class="capture-light capture-light-r" aria-hidden="true"></span>
+                <span class="capture-light capture-light-y" aria-hidden="true"></span>
+                <span class="capture-light capture-light-g" aria-hidden="true"></span>
+                <img class="capture-titlebar-mark" src="/icons/exalto-capture-tile.svg" alt="" width="14" height="14">
+                <span class="capture-title">Exalto Capture</span>
+                <span class="capture-rec"><i aria-hidden="true"></i>REC</span>
+              </div>
+              <dl class="capture-rows">
+                <div><dt>capturing</dt><dd class="receipt-blue">api.openai.com · TLS ✓</dd></div>
+                <div><dt>session</dt><dd>essay-draft.llmtrace</dd></div>
+                <div><dt>messages</dt><dd>47</dd></div>
+              </dl>
+              <p class="capture-footnote">witnessed as ciphertext · never readable</p>
+            </div>
+            <div class="eco-machine-copy">
+              <h3>Exalto Capture</h3>
+              <p>The desktop recorder: start it and work normally. Every session lands here, on your machine.</p>
+              <a class="eco-link" href="#get-started">download →</a>
+            </div>
+          </div>
+        </div>
+        <p class="eco-connector">↓ THE NOTARY WITNESSES ONLY CIPHERTEXT · A SIGNED RECEIPT RETURNS</p>
+        <div class="eco-layer">
+          <p class="eco-rail">THE NOTARIES</p>
+          <div class="eco-cards">
+            <article class="eco-card eco-card-ours">
+              <img class="eco-card-icon" src="/icons/exalto-seal-192.png" alt="" width="26" height="26">
+              <p class="eco-eyebrow eco-eyebrow-blue">OURS</p>
+              <h3>Exalto Seal</h3>
+              <p>Countersigns + timestamps. Never sees plaintext. Shared traces show as Exalto Seal Verified.</p>
+              <a class="eco-link" href="%PRODUCT_ORIGIN%/verify">verify a trace →</a>
+              <a class="eco-link" href="%PRODUCT_ORIGIN%/registry">registry →</a>
+            </article>
+            <article class="eco-card">
+              <p class="eco-eyebrow">THIRD PARTIES</p>
+              <h3>Compatible notaries</h3>
+              <p>Independent operators. Same standard, same checks.</p>
+            </article>
+            <article class="eco-card eco-card-dashed">
+              <p class="eco-eyebrow">SELF-HOSTED</p>
+              <h3>Run your own</h3>
+              <p>Open notary code. Point Capture at it.</p>
+            </article>
+          </div>
+        </div>
+        <p class="eco-connector">↓ ALL OF IT SPEAKS THE SAME ENP STANDARD</p>
+        <div class="eco-layer">
+          <p class="eco-rail">THE NETWORK</p>
+          <div class="eco-network">
+            <div class="eco-network-copy">
+              <h3>Exalto Notary Protocol <span class="eco-enp">ENP</span></h3>
+              <p class="eco-network-tag">THE OPEN STANDARD</p>
+              <p>The OpenTelemetry trace format, capture rules, the offline verifier.</p>
+              <a class="eco-link" href="%PRODUCT_ORIGIN%/docs">spec →</a>
+            </div>
+            <svg class="eco-graph" viewBox="0 0 520 96" aria-hidden="true">
+              <path class="graph-line" d="M20,58 L120,30 L230,64 L340,34 L450,58 L500,44"></path>
+              <path class="graph-line graph-line-soft" d="M20,58 L230,64 L500,44 M120,30 L340,34"></path>
+              <circle cx="20" cy="58" r="4" style="fill:#1e4a73"></circle>
+              <circle cx="120" cy="30" r="3.5" style="fill:#f5f3ec;stroke:#1e4a73;stroke-width:1.3"></circle>
+              <circle cx="230" cy="64" r="4.5" style="fill:#1e4a73"></circle>
+              <circle cx="340" cy="34" r="3.5" style="fill:#f5f3ec;stroke:#1e4a73;stroke-width:1.3"></circle>
+              <circle cx="450" cy="58" r="4" style="fill:#1e4a73"></circle>
+              <circle cx="500" cy="44" r="3" style="fill:#1e4a73;opacity:.55"></circle>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <p class="eco-kicker"><b>Exalto Seal</b> is just one notary among many to come: seal with ours, with a third party's, or with one you run yourself.</p>
+    </div>
+  </section>
+
+  <!-- ============================== TRUST ============================== -->
+  <section class="section trust" id="trust" aria-labelledby="trust-title">
+    <div class="wrap">
+      <p class="section-label">TRUST MODEL<span class="dash-rule" aria-hidden="true"></span></p>
+      <p class="trust-law" id="trust-title">A trace proves <span class="caption-blue">presence</span>, never absence.</p>
+      <div class="trust-grid">
+        <div class="trust-col trust-col-proves">
+          <p class="trust-col-label trust-col-label-blue">A SEALED TRACE PROVES</p>
+          <ul>
+            <li><span class="trust-mark trust-mark-yes" aria-hidden="true">✓</span>The disclosed bytes traveled an authenticated connection with the named AI provider.</li>
+            <li><span class="trust-mark trust-mark-yes" aria-hidden="true">✓</span>They have not changed since capture.</li>
+            <li><span class="trust-mark trust-mark-yes" aria-hidden="true">✓</span>The named notary witnessed them at the stated time.</li>
+            <li><span class="trust-mark trust-mark-yes" aria-hidden="true">✓</span>With live capture enabled: the exact timeline as it actually unfolded.</li>
+          </ul>
+        </div>
+        <div class="trust-col">
+          <p class="trust-col-label">IT CANNOT PROVE</p>
+          <ul>
+            <li><span class="trust-mark trust-mark-no" aria-hidden="true">✕</span>That every interaction was disclosed.</li>
+            <li><span class="trust-mark trust-mark-no" aria-hidden="true">✕</span>Who was behind the keyboard.</li>
+            <li><span class="trust-mark trust-mark-no" aria-hidden="true">✕</span>That no other AI or device was used.</li>
+            <li><span class="trust-mark trust-mark-no" aria-hidden="true">✕</span>That an output was correct, lawful, or wise.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="trust-note">Learn more: <a href="%PRODUCT_ORIGIN%/docs/how-it-works">full trust model →</a></p>
+    </div>
+  </section>
+
+  <!-- ============================== PRICING ============================== -->
+  <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <p class="section-label" id="pricing-title">COSTS?<span class="dash-rule" aria-hidden="true"></span></p>
+      <p class="pricing-line"><b>Capture with your own notary is always free and unlimited. 
+      </b> Exalto Capture offers a generous monthly allowance for capture, sealing, verification, and long-term archival. <a href="%PRODUCT_ORIGIN%/docs/hosted-credits">Details →</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <nav class="footer-links" aria-label="Footer">
+      <a href="%PRODUCT_ORIGIN%/docs">Spec</a>
+      <a href="https://github.com/exalto-ai/notary-runtime">GitHub</a>
+      <a href="%PRODUCT_ORIGIN%/registry">Notary registry</a>
+      <a href="%PRODUCT_ORIGIN%/traces">Public Traces</a>
+      <a href="%PRODUCT_ORIGIN%/privacy">Privacy</a>
+      <a href="%PRODUCT_ORIGIN%/terms">Terms</a>
+    </nav>
+    <p class="footer-legal">Exalto Seal is not a notary public. Sealing is not a notarial act. A receipt is cryptographic evidence, not a legal instrument. The ENP specification uses "notary" as a technical role term, in the way public-key infrastructure uses "certificate authority."</p>
+    <p class="footer-credit">Built on <a href="https://tlsnotary.org">TLSNotary</a>. © 2026 Exalto.</p>
+  </div>
+</footer>
+
+</body>
+</html>
