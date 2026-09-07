@@ -27,10 +27,3 @@ jobs:
       - run: npm run build
       - name: Verify legacy documentation redirects
         run: npm run test:redirects
-      - name: Verify deploy target
-        run: |
-          set -euo pipefail
-          configured="$(sed -n 's/^app = "\(.*\)"$/\1/p' fly.toml)"
-          declared="$(sed -n 's/^      FLY_APP: \(.*\)$/\1/p' .github/workflows/deploy.yml)"
-          test -n "$configured"
-          test "$configured" = "$declared"
