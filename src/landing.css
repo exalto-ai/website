@@ -21,10 +21,8 @@
   --cream: #eef2f7;
   --cream-75: rgba(238, 242, 247, 0.75);
   --rec: #b3402a;
-  --hairline: rgba(26, 34, 51, 0.14);
-  --hairline-soft: rgba(26, 34, 51, 0.08);
+  --hairline: rgba(26, 34, 51, 0.13);
   --hairline-dark: rgba(255, 255, 255, 0.09);
-  --wash-model: rgba(30, 74, 115, 0.1);
   --wash-you: rgba(14, 143, 93, 0.1);
   --wash-model-dark: rgba(126, 178, 235, 0.15);
   --wash-you-dark: rgba(53, 227, 155, 0.13);
@@ -306,15 +304,16 @@ a:hover {
   text-decoration: none;
 }
 
-.nav-cta {
+.nav-menu .nav-cta {
   background: var(--ink);
-  color: var(--paper) !important;
+  color: var(--paper);
   padding: 9px 17px;
   border-radius: 5px;
   font-size: 12px;
 }
 
-.nav-cta:hover {
+.nav-menu .nav-cta:hover {
+  color: var(--paper);
   background: #10161f;
 }
 
@@ -1101,7 +1100,7 @@ a:hover {
 .protocol .wrap {
   padding-top: 72px;
   padding-bottom: 64px;
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
 }
 
 .diagram-desktop {
@@ -1161,7 +1160,7 @@ a:hover {
 
 .party-card {
   fill: var(--card);
-  stroke: rgba(26, 34, 51, 0.13);
+  stroke: var(--hairline);
 }
 
 .party-eyebrow {
@@ -1224,7 +1223,7 @@ a:hover {
 .stack-card {
   position: relative;
   background: var(--card);
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   border-radius: 4px;
   padding: 16px 18px;
 }
@@ -1303,7 +1302,7 @@ a:hover {
 /* ---------- breakthrough ---------- */
 
 .breakthrough .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
 }
 
 .stamps {
@@ -1317,7 +1316,7 @@ a:hover {
   flex: 1;
   min-width: 200px;
   background: var(--card);
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   border-radius: 6px;
   padding: 18px 20px;
 }
@@ -1374,7 +1373,7 @@ a:hover {
 /* ---------- applications ---------- */
 
 .applications .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
 }
 
 .app-grid {
@@ -1385,7 +1384,7 @@ a:hover {
 }
 
 .tile {
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   background: var(--card);
   border-radius: 3px;
   padding: 18px;
@@ -1479,7 +1478,7 @@ a:hover {
   font-size: 9.5px;
   letter-spacing: 0.08em;
   padding: 4px 11px;
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   border-radius: 999px;
   color: var(--muted);
 }
@@ -1487,7 +1486,7 @@ a:hover {
 /* ---------- get started ---------- */
 
 .get-started .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
 }
 
 .gs-grid {
@@ -1512,7 +1511,7 @@ a:hover {
 
 .receipt {
   background: var(--card);
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   border-radius: 3px;
   padding: 22px 22px 18px;
   font-family: var(--mono);
@@ -1528,7 +1527,7 @@ a:hover {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-  border-bottom: 1px dashed rgba(26, 34, 51, 0.13);
+  border-bottom: 1px dashed var(--hairline);
   padding-bottom: 12px;
   display: flex;
   justify-content: space-between;
@@ -1578,7 +1577,7 @@ a:hover {
 .receipt-verified {
   margin: 16px 0 0;
   padding-top: 14px;
-  border-top: 1px dashed rgba(26, 34, 51, 0.13);
+  border-top: 1px dashed var(--hairline);
   display: flex;
   align-items: center;
   gap: 9px;
@@ -1609,7 +1608,7 @@ a:hover {
 /* ---------- ecosystem ---------- */
 
 .ecosystem .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
 }
 
 .eco-stack {
@@ -1643,7 +1642,7 @@ a:hover {
 
 .eco-card {
   position: relative;
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   background: var(--card);
   border-radius: 3px;
   padding: 14px 16px;
@@ -1824,7 +1823,7 @@ a:hover {
 }
 
 .capture-footnote {
-  border-top: 1px dashed rgba(26, 34, 51, 0.13);
+  border-top: 1px dashed var(--hairline);
   margin: 7px 16px 0;
   padding: 7px 0 13px;
   color: var(--muted);
@@ -1896,7 +1895,7 @@ a:hover {
 /* ---------- trust ---------- */
 
 .trust .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
 }
 
 .trust-law {
@@ -1912,7 +1911,7 @@ a:hover {
 .trust-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid rgba(26, 34, 51, 0.13);
+  border: 1px solid var(--hairline);
   background: var(--card);
   border-radius: 3px;
 }
@@ -1922,7 +1921,7 @@ a:hover {
 }
 
 .trust-col-proves {
-  border-right: 1px solid rgba(26, 34, 51, 0.13);
+  border-right: 1px solid var(--hairline);
 }
 
 .trust-col-label {
@@ -1943,11 +1942,14 @@ a:hover {
   padding: 0;
   font-family: var(--serif-body);
   font-size: 14.5px;
+  line-height: 1.5;
   color: var(--ink-soft);
 }
 
 .trust-col li {
-  padding: 7px 0;
+  /* the padding absorbs the line-height's leading, so a one-line row keeps
+     its height and a wrapped one gets real leading */
+  padding: 3.5px 0;
   border-bottom: 1px dashed rgba(26, 34, 51, 0.07);
   display: flex;
   align-items: flex-start;
@@ -1965,9 +1967,9 @@ a:hover {
   border-radius: 3px;
   align-items: center;
   justify-content: center;
-  /* the box is taller than the text's cap height, so it hangs slightly above
-     the line box to sit centered on the first line of copy */
-  margin: -2px 10px 0 0;
+  /* offset so the box centers on the cap height of the first line, not on the
+     line box: the leading below the baseline would otherwise drag it down */
+  margin: 1.3px 10px 0 0;
 }
 
 .trust-mark-yes {
@@ -1992,7 +1994,7 @@ a:hover {
 /* ---------- footer ---------- */
 
 .footer .wrap {
-  border-top: 1px solid rgba(26, 34, 51, 0.13);
+  border-top: 1px solid var(--hairline);
   padding-top: 40px;
   padding-bottom: 60px;
 }
@@ -2184,7 +2186,7 @@ a:hover {
 
   .trust-col-proves {
     border-right: none;
-    border-bottom: 1px solid rgba(26, 34, 51, 0.13);
+    border-bottom: 1px solid var(--hairline);
   }
 }
 

@@ -34,7 +34,7 @@ if (trigger && popover) {
     popover.hidden = !open;
     trigger.setAttribute('aria-expanded', String(open));
   };
-  const wrap = trigger.closest('.passage-live-wrap');
+  const wrap = trigger.closest('.passage-live-wrap') ?? trigger;
   wrap.addEventListener('mouseenter', () => setOpen(true));
   wrap.addEventListener('mouseleave', () => setOpen(false));
   trigger.addEventListener('focus', () => setOpen(true));
