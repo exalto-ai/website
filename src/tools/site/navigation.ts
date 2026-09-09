@@ -16,15 +16,3 @@ export function navigateTo(route: string): void {
   window.history.pushState({}, '', routeHref(route));
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
-
-export function migrateLegacyRoute(): void {
-  const route = currentRoute();
-  const canonical = route
-    .replace(/^(?:account|dashboard)(?=\/|\?|$)/, 'app')
-    .replace(/^app\/credits(?=\?|$)/, 'app/usage')
-    .replace(/^app\/shares(?=\?|$)/, 'app/traces')
-    .replace(/^app\/?(?=\?|$)/, 'app/overview');
-  if (canonical !== route || window.location.hash.startsWith('#/')) {
-    window.history.replaceState({}, '', routeHref(canonical));
-  }
-}

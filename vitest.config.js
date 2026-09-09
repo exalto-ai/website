@@ -6,7 +6,6 @@ import { defineConfig } from 'vitest/config';
 const localBrowser = process.env.PLAYWRIGHT_EXECUTABLE_PATH;
 
 export default defineConfig({
-  define: { __PUBLIC_ORIGIN__: JSON.stringify('https://notary.example') },
   optimizeDeps: { include: ['openapi-fetch', 'react-dom/client', 'react-markdown'] },
   resolve: { alias: { '@': resolve(process.cwd(), 'src/tools') } },
   plugins: [react()],

@@ -42,7 +42,7 @@ export function localPreviewApi(origins) {
     publisher: 'Local preview',
     shared_at: now - i * 86400,
     password_protected: false,
-    public_url: `${origins.seal}/s/preview-${i + 1}`,
+    public_url: `${origins.website}/s/preview-${i + 1}`,
   }));
   const page = (items) => ({ items, next_cursor: null });
   return {

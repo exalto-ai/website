@@ -1,4 +1,3 @@
-import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
@@ -16,10 +15,10 @@ export default defineConfig(({command}) => {
   }
   return {
     resolve: { alias: { '@': resolve(import.meta.dirname, 'src/tools') } },
-    define: { __CAPTURE_ORIGIN__: JSON.stringify(capture), __WEBSITE_ORIGIN__: JSON.stringify(website), __API_ORIGIN__: JSON.stringify(api), __PUBLIC_ORIGIN__: JSON.stringify(capture), __LOCAL_PREVIEW__: JSON.stringify(sample), __BRAND_ASSET_VERSION__: JSON.stringify('capture') },
-    plugins: [react(), tailwindcss(), ...(sample ? [localPreviewApi({capture, seal: website})] : []), {
+    define: { __CAPTURE_ORIGIN__: JSON.stringify(capture), __WEBSITE_ORIGIN__: JSON.stringify(website), __API_ORIGIN__: JSON.stringify(api), __LOCAL_PREVIEW__: JSON.stringify(sample), __BRAND_ASSET_VERSION__: JSON.stringify('capture') },
+    plugins: [react(), tailwindcss(), ...(sample ? [localPreviewApi({capture, website})] : []), {
       name: 'site-html',
-      transformIndexHtml: html => html.replaceAll('%PRODUCT_ORIGIN%', capture).replaceAll('%PUBLIC_ORIGIN%', capture).replaceAll('%BRAND_ASSET_VERSION%', 'capture'),
+      transformIndexHtml: html => html.replaceAll('%CAPTURE_ORIGIN%', capture),
       configureServer(server) { server.middlewares.use((req, _res, next) => { if (/^\/(traces|registry|verify)\/?(?:\?|$)|^\/s\/[^/]+\/?(?:\?|$)/.test(req.url ?? '')) req.url = '/tools.html'; next(); }); },
     }],
     build: {rollupOptions: {input: {marketing: resolve(import.meta.dirname, 'index.html'), tools: resolve(import.meta.dirname, 'tools.html')}}},

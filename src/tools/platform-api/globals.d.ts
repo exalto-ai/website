@@ -1,4 +1,3 @@
-declare const __PUBLIC_ORIGIN__: string;
 
 declare const __CAPTURE_ORIGIN__: string;
 declare const __WEBSITE_ORIGIN__: string;
