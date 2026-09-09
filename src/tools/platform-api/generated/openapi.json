@@ -1,0 +1,6117 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Exalto Seal API",
+    "description": "Account, Device, hosted Trace, public Trace, Registry, verification, admission, usage, credits, and billing API for Exalto Seal. This contract is separate from the loopback local administration API.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.exalto.ai",
+      "description": "Exalto Seal"
+    }
+  ],
+  "paths": {
+    "/api/account": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Get the current Exalto account",
+        "operationId": "account",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Delete the current Exalto account and hosted data",
+        "operationId": "delete_account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteAccountRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Account deleted",
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/api-keys": {
+      "get": {
+        "tags": [
+          "api-keys"
+        ],
+        "summary": "List account API keys",
+        "operationId": "list_api_keys",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size; defaults to 50",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_ApiKeyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "api-keys"
+        ],
+        "summary": "Create an account API key",
+        "operationId": "create_api_key",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApiKeyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateApiKeyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/api-keys/{api_key_id}": {
+      "delete": {
+        "tags": [
+          "api-keys"
+        ],
+        "summary": "Revoke an account API key",
+        "operationId": "revoke_api_key",
+        "parameters": [
+          {
+            "name": "api_key_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "API key revoked"
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/auth/github": {
+      "get": {
+        "tags": [
+          "browser-auth"
+        ],
+        "summary": "Start GitHub browser sign-in",
+        "operationId": "start_github_login",
+        "parameters": [
+          {
+            "name": "return_to",
+            "in": "query",
+            "description": "Allowed in-app route after sign-in",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "307": {
+            "description": "Temporary redirect to GitHub",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/github/callback": {
+      "get": {
+        "tags": [
+          "browser-auth"
+        ],
+        "summary": "Finish GitHub browser sign-in",
+        "operationId": "finish_github_login",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "error",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "303": {
+            "description": "Redirect to the hosted application",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/google": {
+      "get": {
+        "tags": [
+          "browser-auth"
+        ],
+        "summary": "Start Google browser sign-in",
+        "operationId": "start_google_login",
+        "parameters": [
+          {
+            "name": "return_to",
+            "in": "query",
+            "description": "Allowed in-app route after sign-in",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "307": {
+            "description": "Temporary redirect to Google",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/google/callback": {
+      "get": {
+        "tags": [
+          "browser-auth"
+        ],
+        "summary": "Finish Google browser sign-in",
+        "operationId": "finish_google_login",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "error",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "303": {
+            "description": "Redirect to the hosted application",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "browser-auth"
+        ],
+        "summary": "End the browser session",
+        "operationId": "logout",
+        "responses": {
+          "204": {
+            "description": "Browser session ended",
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/auth/providers": {
+      "get": {
+        "tags": [
+          "browser-auth"
+        ],
+        "summary": "List configured browser sign-in providers",
+        "operationId": "auth_providers",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthProvidersResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          }
+        }
+      }
+    },
+    "/api/billing/checkout-sessions": {
+      "post": {
+        "tags": [
+          "billing"
+        ],
+        "summary": "Create a Stripe-hosted credit purchase",
+        "operationId": "create_checkout_session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCheckoutSessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCheckoutSessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/billing/portal-sessions": {
+      "post": {
+        "tags": [
+          "billing"
+        ],
+        "summary": "Create a Stripe Billing Portal session",
+        "operationId": "create_portal_session",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePortalSessionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/billing/purchases": {
+      "get": {
+        "tags": [
+          "billing"
+        ],
+        "summary": "List recent hosted-credit purchases",
+        "operationId": "list_purchases",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPurchasesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/billing/purchases/{purchase_id}": {
+      "get": {
+        "tags": [
+          "billing"
+        ],
+        "summary": "Get one hosted-credit purchase",
+        "operationId": "get_purchase",
+        "parameters": [
+          {
+            "name": "purchase_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPurchase"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/billing/stripe/webhook": {
+      "post": {
+        "tags": [
+          "billing"
+        ],
+        "summary": "Receive signed Stripe billing events",
+        "operationId": "stripe_webhook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Event processed or safely ignored"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "502": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/billing/subscription-checkout-sessions": {
+      "post": {
+        "tags": [
+          "billing"
+        ],
+        "summary": "Create a Stripe-hosted subscription Checkout session",
+        "operationId": "create_subscription_checkout_session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubscriptionCheckoutRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSubscriptionCheckoutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/credit-offers": {
+      "get": {
+        "tags": [
+          "credits"
+        ],
+        "summary": "List promotional credit offers eligible for the signed-in account",
+        "operationId": "eligible_credit_offers",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditOffersResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/credit-offers/{offer_id}/claim": {
+      "post": {
+        "tags": [
+          "credits"
+        ],
+        "summary": "Claim one server-defined promotional credit offer",
+        "operationId": "claim_credit_offer",
+        "parameters": [
+          {
+            "name": "offer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimCreditOfferResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/credits/history": {
+      "get": {
+        "tags": [
+          "credits"
+        ],
+        "summary": "List the signed-in account's credit activity",
+        "operationId": "credit_history",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size; defaults to 50",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_CreditHistoryEntry"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/device-authorizations": {
+      "post": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Start Device authorization",
+        "operationId": "start_device_authorization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDeviceAuthorization"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceAuthorizationStarted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/device-authorizations/{request_id}/approval": {
+      "get": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Get browser approval details",
+        "operationId": "device_approval_details",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Notary-Approval-Secret",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceAuthorizationApproval"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Approve Device authorization",
+        "operationId": "approve_device_authorization",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Notary-Approval-Secret",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Device authorized"
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/device-authorizations/{request_id}/token": {
+      "post": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Complete Device authorization",
+        "operationId": "complete_device_authorization",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceCredentials"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "428": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pollSecret": []
+          }
+        ]
+      }
+    },
+    "/api/device-session": {
+      "get": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Get the Device access-token identity",
+        "operationId": "get_device_session",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceSessionIdentity"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "account:read"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Revoke a Device session by refresh token",
+        "operationId": "logout_device_session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Device session revoked"
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/device-session/token": {
+      "post": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Rotate Device access and refresh tokens",
+        "operationId": "refresh_device_tokens",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRefreshRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceCredentials"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/devices": {
+      "get": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "List the account's Connected devices",
+        "operationId": "list_devices",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size; defaults to 50",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_ConnectedDevice"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/devices/{device_id}": {
+      "delete": {
+        "tags": [
+          "devices"
+        ],
+        "summary": "Revoke one Connected device",
+        "operationId": "revoke_web_device_session",
+        "parameters": [
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Device session revoked"
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/healthz": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Check API process health",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          }
+        }
+      }
+    },
+    "/api/internal/notary/admissions/redeem": {
+      "post": {
+        "tags": [
+          "notary-admission"
+        ],
+        "summary": "Consume a ticket using the requested notary admission contract",
+        "operationId": "redeem_admission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RedeemAdmissionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedeemedOperationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "serviceBearer": []
+          }
+        ]
+      }
+    },
+    "/api/internal/notary/operations/activate": {
+      "post": {
+        "tags": [
+          "notary-admission"
+        ],
+        "summary": "Activate an admitted operation after settlement state is durable",
+        "operationId": "activate_operation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivateOperationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Operation activated or identical activation already applied"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "serviceBearer": []
+          }
+        ]
+      }
+    },
+    "/api/internal/notary/operations/settle": {
+      "post": {
+        "tags": [
+          "notary-admission"
+        ],
+        "summary": "Settle authoritative byte usage for one admitted operation",
+        "operationId": "settle_usage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsageSettlementRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Usage settled or identical report already applied"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "serviceBearer": []
+          }
+        ]
+      }
+    },
+    "/api/notary/admissions": {
+      "post": {
+        "tags": [
+          "notary-admission"
+        ],
+        "summary": "Issue a short-lived one-time hosted notary admission ticket",
+        "description": "Anonymous requests are allowed. Authenticated capture requests require capture:request; authenticated notarization requests require notarization:request.",
+        "operationId": "issue_admission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueAdmissionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdmissionTicketResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "bearerAuth": [
+              "capture:request"
+            ]
+          },
+          {
+            "bearerAuth": [
+              "notarization:request"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/public/traces": {
+      "get": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "List Listed verified-session traces",
+        "operationId": "list_public_traces",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size; defaults to 50",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shared_after",
+            "in": "query",
+            "description": "Include traces shared at or after this Unix timestamp",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_PublicTraceSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/traces/{trace_id}": {
+      "get": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "Get one admitted public Trace",
+        "operationId": "public_trace_detail",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicTraceDetail"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/traces/{trace_id}/access": {
+      "post": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "Establish narrowly scoped access to a protected public Trace",
+        "operationId": "access_public_trace",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicTraceAccessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Access established"
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/traces/{trace_id}/content": {
+      "get": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "Get the bounded disclosed conversation from one public Trace",
+        "operationId": "public_trace_content",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicTraceContent"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/traces/{trace_id}/package.llmtrace": {
+      "get": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "Download the exact verified portable proof package",
+        "operationId": "public_trace_package",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/vnd.exalto.notary.trace-package+zip": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/traces/{trace_id}/reports": {
+      "post": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "Report a public Trace",
+        "operationId": "create_trace_report",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTraceReport"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TraceReportReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/public/traces/{trace_id}/trace.otlp.json": {
+      "get": {
+        "tags": [
+          "public-traces"
+        ],
+        "summary": "Download the verified canonical OpenTelemetry trace",
+        "operationId": "public_trace_otlp",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/readyz": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Check database readiness",
+        "operationId": "readiness",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/registry": {
+      "get": {
+        "tags": [
+          "registry"
+        ],
+        "summary": "Get the versioned Registry of Official Notaries",
+        "operationId": "get_registry",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistryResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          }
+        }
+      }
+    },
+    "/api/traces": {
+      "get": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "List the current account's hosted Traces",
+        "operationId": "list_web_traces",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Page size; defaults to 50",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 100,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_HostedTrace"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          },
+          {
+            "bearerAuth": [
+              "traces:read"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "Create, resume, or safely re-share one hosted Trace",
+        "operationId": "create_hosted_trace",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Stable key for this hosted Trace request",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHostedTraceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Existing hosted Trace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateHostedTraceResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "New or reopened hosted Trace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateHostedTraceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "traces:share"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/traces/{trace_id}": {
+      "get": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "Get one hosted Trace",
+        "operationId": "get_hosted_trace",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostedTrace"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "traces:read"
+            ]
+          },
+          {
+            "browserSession": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "Change hosted Trace access settings",
+        "operationId": "update_trace_access",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTraceAccessSettings"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostedTrace"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "traces:share"
+            ]
+          },
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/traces/{trace_id}/package.llmtrace": {
+      "get": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "Download an owned exact verified portable proof package",
+        "operationId": "download_owned_trace_package",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/vnd.exalto.notary.trace-package+zip": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "traces:read"
+            ]
+          },
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/traces/{trace_id}/share": {
+      "delete": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "Stop public access to one hosted Trace",
+        "operationId": "stop_hosted_trace_sharing",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sharing stopped; the owner record and package remain"
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "traces:share"
+            ]
+          },
+          {
+            "browserSession": []
+          }
+        ]
+      }
+    },
+    "/api/traces/{trace_id}/upload-completion": {
+      "post": {
+        "tags": [
+          "traces"
+        ],
+        "summary": "Complete one hosted Trace package upload",
+        "operationId": "complete_hosted_trace_upload",
+        "parameters": [
+          {
+            "name": "trace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompleteHostedTraceUploadRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostedTrace"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": [
+              "traces:share"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/usage": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Get capture, notarization, and hosted Trace usage",
+        "operationId": "usage",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "browserSession": []
+          },
+          {
+            "bearerAuth": [
+              "account:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/verify": {
+      "post": {
+        "tags": [
+          "verification"
+        ],
+        "summary": "Verify a portable .llmtrace package",
+        "operationId": "verify",
+        "requestBody": {
+          "content": {
+            "application/vnd.exalto.notary.trace-package+zip": {
+              "schema": {
+                "$ref": "#/components/schemas/TracePackageBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Browser origin denied (browser_origin_denied)"
+          },
+          "408": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountBillingResponse": {
+        "type": "object",
+        "required": [
+          "plan",
+          "billing_status",
+          "purchase_mode",
+          "subscriptions_configured",
+          "entitlements"
+        ],
+        "properties": {
+          "billing_status": {
+            "$ref": "#/components/schemas/BillingStatus"
+          },
+          "entitlements": {
+            "$ref": "#/components/schemas/PlanEntitlements"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "purchase_mode": {
+            "$ref": "#/components/schemas/BillingPurchaseMode"
+          },
+          "subscriptions_configured": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AccountLinks": {
+        "type": "object",
+        "required": [
+          "usage",
+          "billing",
+          "devices",
+          "api_keys"
+        ],
+        "properties": {
+          "api_keys": {
+            "type": "string"
+          },
+          "billing": {
+            "type": "string"
+          },
+          "devices": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountResponse": {
+        "type": "object",
+        "required": [
+          "account",
+          "billing",
+          "links"
+        ],
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/PublicUser"
+          },
+          "billing": {
+            "$ref": "#/components/schemas/AccountBillingResponse"
+          },
+          "links": {
+            "$ref": "#/components/schemas/AccountLinks"
+          }
+        }
+      },
+      "ActivateOperationRequest": {
+        "type": "object",
+        "required": [
+          "operation_id",
+          "notary_instance_id",
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/AdmissionMode"
+          },
+          "notary_instance_id": {
+            "type": "string"
+          },
+          "operation_id": {
+            "type": "string"
+          }
+        }
+      },
+      "AdmissionLimits": {
+        "type": "object",
+        "required": [
+          "max_attestable_http_bytes",
+          "max_frame_bytes",
+          "max_private_chunk_bytes",
+          "max_private_chunk_commitments"
+        ],
+        "properties": {
+          "max_attestable_http_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_frame_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_private_chunk_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_private_chunk_commitments": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "AdmissionMode": {
+        "type": "string",
+        "enum": [
+          "capture",
+          "notarization"
+        ]
+      },
+      "AdmissionRedemptionContract": {
+        "type": "string",
+        "enum": [
+          "one_operation_v2"
+        ]
+      },
+      "AdmissionTicketResponse": {
+        "type": "object",
+        "required": [
+          "ticket",
+          "expires_at",
+          "registry_generation",
+          "limits"
+        ],
+        "properties": {
+          "expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/AdmissionLimits"
+          },
+          "registry_generation": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "ticket": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiKeyResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "prefix",
+          "name",
+          "scopes",
+          "created_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "expires_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "id": {
+            "type": "string"
+          },
+          "last_used_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "revoked_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiScope"
+            }
+          }
+        }
+      },
+      "ApiScope": {
+        "type": "string",
+        "enum": [
+          "account:read",
+          "traces:read",
+          "traces:share",
+          "capture:request",
+          "notarization:request"
+        ]
+      },
+      "AuthProvidersResponse": {
+        "type": "object",
+        "required": [
+          "github",
+          "google"
+        ],
+        "properties": {
+          "github": {
+            "type": "boolean"
+          },
+          "google": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BillingPurchase": {
+        "type": "object",
+        "required": [
+          "id",
+          "state",
+          "quantity_gb",
+          "credit_bytes",
+          "amount_cents",
+          "currency",
+          "amount_refunded_cents",
+          "amount_disputed_cents",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "amount_cents": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "amount_disputed_cents": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "amount_refunded_cents": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "paid_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "quantity_gb": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "receipt_reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "$ref": "#/components/schemas/PurchaseState"
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "BillingPurchaseMode": {
+        "type": "string",
+        "enum": [
+          "disabled",
+          "test",
+          "live"
+        ]
+      },
+      "BillingPurchasesResponse": {
+        "type": "object",
+        "required": [
+          "purchases"
+        ],
+        "properties": {
+          "purchases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingPurchase"
+            }
+          }
+        }
+      },
+      "BillingStatus": {
+        "type": "string",
+        "enum": [
+          "active",
+          "review"
+        ]
+      },
+      "BrowserAuthProvider": {
+        "type": "string",
+        "enum": [
+          "github",
+          "google"
+        ]
+      },
+      "ClaimCreditOfferResponse": {
+        "type": "object",
+        "required": [
+          "offer_id",
+          "credits"
+        ],
+        "properties": {
+          "credits": {
+            "$ref": "#/components/schemas/CreditSummary"
+          },
+          "offer_id": {
+            "type": "string"
+          }
+        }
+      },
+      "CompleteHostedTraceUploadRequest": {
+        "type": "object",
+        "required": [
+          "package_size_bytes",
+          "package_sha256"
+        ],
+        "properties": {
+          "package_sha256": {
+            "type": "string"
+          },
+          "package_size_bytes": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedDevice": {
+        "type": "object",
+        "required": [
+          "device_id",
+          "device_name",
+          "created_at",
+          "last_used_at",
+          "expires_at"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "device_id": {
+            "type": "string"
+          },
+          "device_name": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "last_used_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "revoked_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          }
+        }
+      },
+      "CreateApiKeyRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "scopes"
+        ],
+        "properties": {
+          "expires_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateApiKeyResponse": {
+        "type": "object",
+        "required": [
+          "api_key",
+          "secret"
+        ],
+        "properties": {
+          "api_key": {
+            "$ref": "#/components/schemas/ApiKeyResponse"
+          },
+          "secret": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateCheckoutSessionRequest": {
+        "type": "object",
+        "required": [
+          "quantity_gb",
+          "idempotency_key"
+        ],
+        "properties": {
+          "idempotency_key": {
+            "type": "string"
+          },
+          "quantity_gb": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CreateCheckoutSessionResponse": {
+        "type": "object",
+        "required": [
+          "purchase",
+          "checkout_url"
+        ],
+        "properties": {
+          "checkout_url": {
+            "type": "string"
+          },
+          "purchase": {
+            "$ref": "#/components/schemas/BillingPurchase"
+          }
+        }
+      },
+      "CreateDeviceAuthorization": {
+        "type": "object",
+        "required": [
+          "device_name",
+          "capabilities"
+        ],
+        "properties": {
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceCapability"
+            }
+          },
+          "device_name": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateHostedTraceRequest": {
+        "type": "object",
+        "required": [
+          "source_trace_id",
+          "package_format",
+          "package_size_bytes",
+          "package_sha256",
+          "visibility"
+        ],
+        "properties": {
+          "allow_high_entropy": {
+            "type": "boolean",
+            "description": "Accept unexplained high-entropy values after reviewing the disclosure."
+          },
+          "expires_in_days": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Optional initial access expiry in days.",
+            "maximum": 365,
+            "minimum": 0
+          },
+          "package_format": {
+            "type": "string"
+          },
+          "package_sha256": {
+            "type": "string"
+          },
+          "package_size_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "password": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional initial access password. The value is accepted only in this body."
+          },
+          "reactivate": {
+            "type": "boolean",
+            "description": "Explicitly restore public access when this source Trace was stopped."
+          },
+          "source_trace_id": {
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/TraceVisibility"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateHostedTraceResponse": {
+        "type": "object",
+        "required": [
+          "trace"
+        ],
+        "properties": {
+          "trace": {
+            "$ref": "#/components/schemas/HostedTrace"
+          },
+          "upload": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/HostedTraceUpload"
+              }
+            ]
+          }
+        }
+      },
+      "CreatePortalSessionResponse": {
+        "type": "object",
+        "required": [
+          "portal_url"
+        ],
+        "properties": {
+          "portal_url": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateSubscriptionCheckoutRequest": {
+        "type": "object",
+        "required": [
+          "plan",
+          "idempotency_key"
+        ],
+        "properties": {
+          "idempotency_key": {
+            "type": "string"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/SubscriptionPlan"
+          }
+        }
+      },
+      "CreateSubscriptionCheckoutResponse": {
+        "type": "object",
+        "required": [
+          "checkout_url"
+        ],
+        "properties": {
+          "checkout_url": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateTraceReport": {
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "properties": {
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "reason": {
+            "$ref": "#/components/schemas/TraceReportReason"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CredentialKind": {
+        "type": "string",
+        "enum": [
+          "device_session",
+          "api_key"
+        ]
+      },
+      "CreditBalanceSummary": {
+        "type": "object",
+        "required": [
+          "total_granted_bytes",
+          "total_used_bytes",
+          "total_remaining_bytes",
+          "included_monthly_remaining_bytes",
+          "supplemental_remaining_bytes"
+        ],
+        "properties": {
+          "included_monthly_remaining_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "next_grant_expiration": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "supplemental_remaining_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total_granted_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total_remaining_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total_used_bytes": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CreditHistoryEntry": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "credit_kind",
+          "amount_bytes",
+          "display_label",
+          "created_at"
+        ],
+        "properties": {
+          "amount_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit_kind": {
+            "$ref": "#/components/schemas/CreditKind"
+          },
+          "display_label": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/CreditHistoryKind"
+          },
+          "source_kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "CreditHistoryKind": {
+        "type": "string",
+        "enum": [
+          "grant",
+          "debit",
+          "adjustment"
+        ]
+      },
+      "CreditKind": {
+        "type": "string",
+        "enum": [
+          "capture",
+          "notarization"
+        ]
+      },
+      "CreditOffer": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "amount_bytes",
+          "claim_expires_at",
+          "credit_expires_at"
+        ],
+        "properties": {
+          "amount_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "claim_expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit_expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "CreditOffersResponse": {
+        "type": "object",
+        "required": [
+          "offers"
+        ],
+        "properties": {
+          "offers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditOffer"
+            }
+          }
+        }
+      },
+      "CreditSummary": {
+        "type": "object",
+        "required": [
+          "capture",
+          "notarization",
+          "reset_at"
+        ],
+        "properties": {
+          "capture": {
+            "$ref": "#/components/schemas/CreditBalanceSummary"
+          },
+          "notarization": {
+            "$ref": "#/components/schemas/CreditBalanceSummary"
+          },
+          "reset_at": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CurrentDevice": {
+        "type": "object",
+        "required": [
+          "device_name"
+        ],
+        "properties": {
+          "device_name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAccountRequest": {
+        "type": "object",
+        "required": [
+          "confirmation"
+        ],
+        "properties": {
+          "confirmation": {
+            "type": "string",
+            "description": "Must be exactly `DELETE` after the user confirms local traces remain local."
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceAuthorizationApproval": {
+        "type": "object",
+        "required": [
+          "user_code",
+          "device_name",
+          "capabilities",
+          "expires_at"
+        ],
+        "properties": {
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceCapability"
+            }
+          },
+          "device_name": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user_code": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceAuthorizationStarted": {
+        "type": "object",
+        "required": [
+          "request_id",
+          "user_code",
+          "verification_uri_complete",
+          "expires_in",
+          "interval",
+          "poll_secret"
+        ],
+        "properties": {
+          "expires_in": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "interval": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "poll_secret": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "user_code": {
+            "type": "string"
+          },
+          "verification_uri_complete": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceCapability": {
+        "type": "string",
+        "enum": [
+          "hosted_notarization",
+          "consume_credits",
+          "share_notarized_traces"
+        ]
+      },
+      "DeviceCredentialResponse": {
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/CredentialKind"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceCredentials": {
+        "type": "object",
+        "required": [
+          "access_token",
+          "refresh_token",
+          "expires_in"
+        ],
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "refresh_token": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceRefreshRequest": {
+        "type": "object",
+        "required": [
+          "refresh_token"
+        ],
+        "properties": {
+          "refresh_token": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceSessionIdentity": {
+        "type": "object",
+        "required": [
+          "account",
+          "credential",
+          "billing",
+          "credits"
+        ],
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/PublicUser"
+          },
+          "billing": {
+            "$ref": "#/components/schemas/AccountBillingResponse"
+          },
+          "credential": {
+            "$ref": "#/components/schemas/DeviceCredentialResponse"
+          },
+          "credits": {
+            "$ref": "#/components/schemas/CreditSummary"
+          },
+          "device": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CurrentDevice"
+              }
+            ]
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error",
+          "message"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Health": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "HostedTrace": {
+        "type": "object",
+        "required": [
+          "trace_id",
+          "source_trace_id",
+          "status",
+          "access",
+          "package",
+          "verification",
+          "allow_high_entropy",
+          "created_at",
+          "updated_at",
+          "status_url"
+        ],
+        "properties": {
+          "access": {
+            "$ref": "#/components/schemas/TraceAccessSettings"
+          },
+          "allow_high_entropy": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "owner_package_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "package": {
+            "$ref": "#/components/schemas/HostedTracePackage"
+          },
+          "package_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "public_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_trace_id": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/HostedTraceStatus"
+          },
+          "status_url": {
+            "type": "string"
+          },
+          "trace_id": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/HostedTraceVerification"
+          }
+        }
+      },
+      "HostedTracePackage": {
+        "type": "object",
+        "required": [
+          "format",
+          "declared_size_bytes",
+          "declared_sha256"
+        ],
+        "properties": {
+          "admitted_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "admitted_size_bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "declared_sha256": {
+            "type": "string"
+          },
+          "declared_size_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "format": {
+            "type": "string"
+          }
+        }
+      },
+      "HostedTraceStatus": {
+        "type": "string",
+        "enum": [
+          "verifying",
+          "shared",
+          "stopped",
+          "rejected",
+          "failed"
+        ]
+      },
+      "HostedTraceUpload": {
+        "type": "object",
+        "required": [
+          "method",
+          "url",
+          "headers",
+          "expires_at"
+        ],
+        "properties": {
+          "expires_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "type": "string"
+            }
+          },
+          "method": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "HostedTraceUsage": {
+        "type": "object",
+        "required": [
+          "total",
+          "shared",
+          "verifying",
+          "needs_attention",
+          "stored_bytes"
+        ],
+        "properties": {
+          "needs_attention": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "shared": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "stored_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "verifying": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "HostedTraceVerification": {
+        "type": "object",
+        "properties": {
+          "failure_code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verified_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          }
+        }
+      },
+      "IssueAdmissionRequest": {
+        "type": "object",
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/AdmissionMode"
+          },
+          "record_digest": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "requested_allowance_bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          }
+        }
+      },
+      "NotaryKeyStatusResponse": {
+        "type": "string",
+        "enum": [
+          "active",
+          "retiring",
+          "retired",
+          "revoked"
+        ]
+      },
+      "NotaryStats": {
+        "type": "object",
+        "required": [
+          "captures",
+          "notarizations"
+        ],
+        "properties": {
+          "captures": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Successfully completed capture operations."
+          },
+          "notarizations": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Successfully completed notarization operations."
+          }
+        }
+      },
+      "NotaryTransportResponse": {
+        "type": "string",
+        "enum": [
+          "tcp",
+          "tls"
+        ]
+      },
+      "Page_ApiKeyResponse": {
+        "type": "object",
+        "description": "Uniform response shape for every paginated list route.",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "prefix",
+                "name",
+                "scopes",
+                "created_at"
+              ],
+              "properties": {
+                "created_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "expires_at": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "last_used_at": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "prefix": {
+                  "type": "string"
+                },
+                "revoked_at": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                },
+                "scopes": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiScope"
+                  }
+                }
+              }
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Cursor for the next page, or `null` when this page exhausts the query."
+          }
+        }
+      },
+      "Page_ConnectedDevice": {
+        "type": "object",
+        "description": "Uniform response shape for every paginated list route.",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "device_id",
+                "device_name",
+                "created_at",
+                "last_used_at",
+                "expires_at"
+              ],
+              "properties": {
+                "created_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "device_id": {
+                  "type": "string"
+                },
+                "device_name": {
+                  "type": "string"
+                },
+                "expires_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "last_used_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "revoked_at": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Cursor for the next page, or `null` when this page exhausts the query."
+          }
+        }
+      },
+      "Page_CreditHistoryEntry": {
+        "type": "object",
+        "description": "Uniform response shape for every paginated list route.",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "kind",
+                "credit_kind",
+                "amount_bytes",
+                "display_label",
+                "created_at"
+              ],
+              "properties": {
+                "amount_bytes": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "created_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "credit_kind": {
+                  "$ref": "#/components/schemas/CreditKind"
+                },
+                "display_label": {
+                  "type": "string"
+                },
+                "expires_at": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "$ref": "#/components/schemas/CreditHistoryKind"
+                },
+                "source_kind": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Cursor for the next page, or `null` when this page exhausts the query."
+          }
+        }
+      },
+      "Page_HostedTrace": {
+        "type": "object",
+        "description": "Uniform response shape for every paginated list route.",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "trace_id",
+                "source_trace_id",
+                "status",
+                "access",
+                "package",
+                "verification",
+                "allow_high_entropy",
+                "created_at",
+                "updated_at",
+                "status_url"
+              ],
+              "properties": {
+                "access": {
+                  "$ref": "#/components/schemas/TraceAccessSettings"
+                },
+                "allow_high_entropy": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "owner_package_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "package": {
+                  "$ref": "#/components/schemas/HostedTracePackage"
+                },
+                "package_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "public_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "source_trace_id": {
+                  "type": "string"
+                },
+                "status": {
+                  "$ref": "#/components/schemas/HostedTraceStatus"
+                },
+                "status_url": {
+                  "type": "string"
+                },
+                "trace_id": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "verification": {
+                  "$ref": "#/components/schemas/HostedTraceVerification"
+                }
+              }
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Cursor for the next page, or `null` when this page exhausts the query."
+          }
+        }
+      },
+      "Page_PublicTraceSummary": {
+        "type": "object",
+        "description": "Uniform response shape for every paginated list route.",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "trace_id",
+                "provider",
+                "model",
+                "publisher",
+                "password_protected",
+                "public_url"
+              ],
+              "properties": {
+                "authenticated_at_unix_ms": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                },
+                "input_preview": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "model": {
+                  "type": "string"
+                },
+                "output_preview": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "password_protected": {
+                  "type": "boolean"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "public_url": {
+                  "type": "string"
+                },
+                "publisher": {
+                  "type": "string"
+                },
+                "shared_at": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "int64"
+                },
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "trace_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Cursor for the next page, or `null` when this page exhausts the query."
+          }
+        }
+      },
+      "Plan": {
+        "type": "string",
+        "enum": [
+          "free",
+          "one_gb",
+          "ten_gb"
+        ]
+      },
+      "PlanEntitlements": {
+        "type": "object",
+        "required": [
+          "monthly_notarization_bytes",
+          "monthly_capture_bytes"
+        ],
+        "properties": {
+          "monthly_capture_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "monthly_notarization_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "trace_storage_bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "`None` means there is no fixed plan ceiling; abuse controls still apply."
+          }
+        }
+      },
+      "PublicTraceAccessRequest": {
+        "type": "object",
+        "required": [
+          "password"
+        ],
+        "properties": {
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicTraceContent": {
+        "type": "object",
+        "required": [
+          "trace_id",
+          "input_messages",
+          "output_messages"
+        ],
+        "properties": {
+          "input_messages": {
+            "type": "array",
+            "items": {}
+          },
+          "output_messages": {
+            "type": "array",
+            "items": {}
+          },
+          "trace_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicTraceDetail": {
+        "type": "object",
+        "required": [
+          "trace_id",
+          "visibility",
+          "password_protected",
+          "publisher",
+          "shared_at",
+          "provider",
+          "host",
+          "model",
+          "notarized_state",
+          "hosted_verification",
+          "content_sha256",
+          "package_size_bytes",
+          "package_sha256",
+          "disclosure_safety_version",
+          "disclosure_safety_override",
+          "trace_url",
+          "package_url",
+          "public_url"
+        ],
+        "properties": {
+          "authenticated_at_unix_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "content_sha256": {
+            "type": "string"
+          },
+          "disclosure_safety_override": {
+            "type": "boolean"
+          },
+          "disclosure_safety_version": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "host": {
+            "type": "string"
+          },
+          "hosted_verification": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "notarized_state": {
+            "type": "string"
+          },
+          "notary_key_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "notary_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "notary_operator": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "package_sha256": {
+            "type": "string"
+          },
+          "package_size_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "package_url": {
+            "type": "string"
+          },
+          "password_protected": {
+            "type": "boolean"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "public_url": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "registry_generation": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "shared_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "trace_id": {
+            "type": "string"
+          },
+          "trace_url": {
+            "type": "string"
+          },
+          "trust_source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "visibility": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicTraceSummary": {
+        "type": "object",
+        "required": [
+          "trace_id",
+          "provider",
+          "model",
+          "publisher",
+          "password_protected",
+          "public_url"
+        ],
+        "properties": {
+          "authenticated_at_unix_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "input_preview": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "model": {
+            "type": "string"
+          },
+          "output_preview": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "password_protected": {
+            "type": "boolean"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "public_url": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "shared_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "trace_id": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicUser": {
+        "type": "object",
+        "required": [
+          "id",
+          "provider_display_name",
+          "auth_provider",
+          "display_name"
+        ],
+        "properties": {
+          "auth_provider": {
+            "$ref": "#/components/schemas/BrowserAuthProvider"
+          },
+          "avatar_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "provider_display_name": {
+            "type": "string"
+          }
+        }
+      },
+      "PurchaseState": {
+        "type": "string",
+        "enum": [
+          "creating",
+          "checkout_open",
+          "paid",
+          "failed",
+          "refunded",
+          "disputed"
+        ]
+      },
+      "RedeemAdmissionRequest": {
+        "type": "object",
+        "required": [
+          "ticket",
+          "notary_instance_id",
+          "mode",
+          "registry_generation",
+          "contract",
+          "usage_settlement"
+        ],
+        "properties": {
+          "contract": {
+            "$ref": "#/components/schemas/AdmissionRedemptionContract"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/AdmissionMode"
+          },
+          "notary_instance_id": {
+            "type": "string"
+          },
+          "registry_generation": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "ticket": {
+            "type": "string"
+          },
+          "usage_settlement": {
+            "type": "boolean",
+            "description": "The caller durably settles usage by operation ID. The stop-legacy\ncontract requires this capability for every admitted operation."
+          }
+        }
+      },
+      "RedeemedOperationResponse": {
+        "type": "object",
+        "required": [
+          "operation_id",
+          "activation_deadline",
+          "max_attestable_http_bytes",
+          "max_frame_bytes",
+          "max_private_chunk_bytes",
+          "max_private_chunk_commitments"
+        ],
+        "properties": {
+          "activation_deadline": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_attestable_http_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_frame_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_private_chunk_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "max_private_chunk_commitments": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "notarization_allowance_bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "operation_id": {
+            "type": "string"
+          },
+          "record_digest": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "RegistryRecordResponse": {
+        "type": "object",
+        "required": [
+          "name",
+          "operator",
+          "host",
+          "port",
+          "transport",
+          "key_id",
+          "verification_key",
+          "status",
+          "valid_from_unix_ms"
+        ],
+        "properties": {
+          "host": {
+            "type": "string"
+          },
+          "key_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "notarize_until_unix_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "minimum": 0
+          },
+          "operator": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "status": {
+            "$ref": "#/components/schemas/NotaryKeyStatusResponse"
+          },
+          "transport": {
+            "$ref": "#/components/schemas/NotaryTransportResponse"
+          },
+          "valid_from_unix_ms": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "valid_until_unix_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "minimum": 0
+          },
+          "verification_key": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistryResponse": {
+        "type": "object",
+        "required": [
+          "format",
+          "generation",
+          "active_key_id",
+          "notaries"
+        ],
+        "properties": {
+          "active_key_id": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "notaries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistryRecordResponse"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscriptionPlan": {
+        "type": "string",
+        "enum": [
+          "one_gb",
+          "ten_gb"
+        ]
+      },
+      "TraceAccessSettings": {
+        "type": "object",
+        "required": [
+          "visibility",
+          "password_protected"
+        ],
+        "properties": {
+          "expires_at": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "password_protected": {
+            "type": "boolean"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/TraceVisibility"
+          }
+        }
+      },
+      "TracePackageBody": {
+        "type": "string",
+        "format": "binary"
+      },
+      "TraceReportReason": {
+        "type": "string",
+        "enum": [
+          "sensitive_information",
+          "harassment",
+          "illegal_content",
+          "spam",
+          "other"
+        ]
+      },
+      "TraceReportReceipt": {
+        "type": "object",
+        "required": [
+          "received"
+        ],
+        "properties": {
+          "received": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TraceVisibility": {
+        "type": "string",
+        "enum": [
+          "unlisted",
+          "listed"
+        ]
+      },
+      "UpdateTraceAccessSettings": {
+        "type": "object",
+        "properties": {
+          "expires_in_days": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Days from now until expiry. Zero removes the current expiry.",
+            "maximum": 365,
+            "minimum": 0
+          },
+          "password": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A new password, or an empty string to remove the current password."
+          },
+          "visibility": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/TraceVisibility"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsageResponse": {
+        "type": "object",
+        "required": [
+          "credits",
+          "operations",
+          "hosted_traces"
+        ],
+        "properties": {
+          "credits": {
+            "$ref": "#/components/schemas/CreditSummary"
+          },
+          "hosted_traces": {
+            "$ref": "#/components/schemas/HostedTraceUsage"
+          },
+          "operations": {
+            "$ref": "#/components/schemas/NotaryStats"
+          }
+        }
+      },
+      "UsageSettlementOutcome": {
+        "type": "string",
+        "enum": [
+          "completed",
+          "client_failed",
+          "service_failed"
+        ]
+      },
+      "UsageSettlementRequest": {
+        "type": "object",
+        "required": [
+          "operation_id",
+          "notary_instance_id",
+          "mode",
+          "authenticated_bytes",
+          "outcome"
+        ],
+        "properties": {
+          "authenticated_bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/AdmissionMode"
+          },
+          "notary_instance_id": {
+            "type": "string"
+          },
+          "operation_id": {
+            "type": "string"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/UsageSettlementOutcome"
+          }
+        }
+      },
+      "VerificationResponse": {
+        "type": "object",
+        "required": [
+          "verified",
+          "trace_id",
+          "authenticated_at_unix_ms",
+          "provider",
+          "host",
+          "notary_key_id",
+          "registry_generation",
+          "trust_source",
+          "package_sha256",
+          "content_sha256",
+          "trace"
+        ],
+        "properties": {
+          "authenticated_at_unix_ms": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "content_sha256": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "notary_key_id": {
+            "type": "string"
+          },
+          "package_sha256": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "registry_generation": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "trace": {},
+          "trace_id": {
+            "type": "string"
+          },
+          "trust_source": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "opaque",
+        "description": "Short-lived Device access token or stable scoped API key"
+      },
+      "browserSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "notary_session",
+        "description": "HttpOnly hosted browser session cookie"
+      },
+      "pollSecret": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Notary-Poll-Secret",
+        "description": "One-time secret returned when Device authorization starts"
+      },
+      "serviceBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "opaque",
+        "description": "Dedicated notary-to-platform service credential"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "health",
+      "description": "Exalto Seal platform health"
+    },
+    {
+      "name": "browser-auth",
+      "description": "Google- or GitHub-backed browser authentication"
+    },
+    {
+      "name": "account",
+      "description": "Current Account identity and usage"
+    },
+    {
+      "name": "devices",
+      "description": "Connected devices and Device authorization"
+    },
+    {
+      "name": "api-keys",
+      "description": "Scoped unattended API credentials"
+    },
+    {
+      "name": "traces",
+      "description": "Authenticated hosted Trace intake and access settings"
+    },
+    {
+      "name": "public-traces",
+      "description": "Listed discovery and stable public Trace access"
+    },
+    {
+      "name": "registry",
+      "description": "Versioned Registry of Official Notaries"
+    },
+    {
+      "name": "notary-admission",
+      "description": "One-operation Notary admission tickets"
+    },
+    {
+      "name": "billing",
+      "description": "Stripe-hosted subscriptions and additional notarization purchases"
+    },
+    {
+      "name": "credits",
+      "description": "Credit offers and history"
+    },
+    {
+      "name": "verification",
+      "description": "Anonymous, retention-free portable package verification"
+    }
+  ]
+}

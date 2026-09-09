@@ -1,54 +1,24 @@
-# Exalto website (exalto.ai)
+# Exalto website
 
-The marketing landing page for the Exalto Notary Protocol, built from the
-`design_handoff_exalto_7a` handoff ("Record + Protocol" in Ledger Phosphor).
-Static-first Vite with no framework: semantic HTML, one tokenized stylesheet,
-and a small vanilla script for the contribution-history popover and the hero
-ledger loop. Fully responsive; all motion is CSS and disabled under
-`prefers-reduced-motion`.
+Marketing lives at `/`. Public tools live at `/traces`, `/registry`, `/verify`,
+and `/s/{trace_id}`. The tools use the hosted API directly and do not load the
+Capture account application. Capture docs and downloads are linked at
+`https://capture.exalto.ai`.
 
-This site is separate from the hosted product site at `seal.exalto.ai`. Product
-links point at that origin by default and can be changed at build time with
-`VITE_PRODUCT_ORIGIN`.
+Run `npm ci`, `npm run dev` (localhost:4175), or `npm run dev:sample` for labeled
+synthetic data with writes disabled. The normal dev API is localhost:8080.
+`VITE_API_ORIGIN`, `VITE_CAPTURE_ORIGIN`, and `VITE_WEBSITE_ORIGIN` configure
+origins. Production defaults are api.exalto.ai, capture.exalto.ai, and exalto.ai.
+Build with `npm run build`; run browser checks with `npm test` and route checks
+with `npm run test:redirects`.
 
-The public user guides live only at [Exalto Seal docs](https://seal.exalto.ai/docs).
-Vercel permanently redirects `/docs`
-and `/docs/*` to the product origin, preserving paths and queries. The image's
-`EXALTO_PRODUCT_ORIGIN` build argument supplies both the links and redirects;
-it must be an origin without a trailing slash.
-Vite dev/preview serves only the landing page; use the redirect test below to
-exercise Caddy. Runtime reference docs remain in `runtime/docs`.
+Vercel builds this repository with `npm run build` and publishes `dist`.
+`vercel.json` maps public deep links to the tools HTML entry; no API proxy or
+retired-domain redirects are needed. Configure the API to allow the website's
+exact origin and credentials. Arbitrary Vercel preview origins are not allowed;
+use sample mode or a configured staging API.
 
-## Develop
-
-```bash
-npm ci
-npm run dev        # http://127.0.0.1:4174
-npm run build      # runs the copy audit, then builds dist/
-npm run preview
-npm run test:redirects # requires Docker and a completed build
-```
-
-`npm run check:copy` enforces the handoff QA checklist: banned vocabulary
-absent (notarize, finaliz*, checkpoint, fingerprint claims, any API), required
-doctrine strings present verbatim, tile order, and no em- or en-dashes in
-rendered copy.
-
-## Placeholders
-
-- The three Proof of Thought CTAs point at the `#pot` band and the band's join
-  button reads "early access · opens soon" until `POT_EARLY_ACCESS_URL` exists;
-  swap the `#pot` hrefs and the button when it does.
-- `favicon.svg` is a placeholder; no commissioned logo exists yet.
-- No `og:image` yet (open item; suggestion: a rendered receipt card).
-- The applications grid ships with the pointillist Ledger Grain art from
-  `public/art/`; product marks used on the page live in `public/icons/`.
-
-## Deploy (Vercel)
-
-The Vercel project is connected to this GitHub repository. Pull requests get
-preview deployments and pushes to `main` deploy to production. Vercel detects
-Vite and publishes `dist/`; redirects and cache headers live in `vercel.json`.
-
-The custom domain is configured separately in Vercel when exalto.ai is ready
-to move from its current host.
+The generated hosted contract is committed under `src/tools/platform-api/generated`.
+After regenerating it in the notary repo, run `npm run sync:api -- <generated-directory>`.
+The build needs no sibling checkout. Browser tests retain the original public
+trace, password protection, Registry, and verification coverage.

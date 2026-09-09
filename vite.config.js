@@ -1,30 +1,29 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
-
-// The hosted product site. The landing links to it for docs, downloads,
-// verification, traces, the Registry, and legal pages.
-const productOrigin = process.env.VITE_PRODUCT_ORIGIN ?? 'https://seal.exalto.ai';
-const productOriginUrl = new URL(productOrigin);
-if (
-  !['http:', 'https:'].includes(productOriginUrl.protocol) ||
-  productOrigin !== productOriginUrl.origin ||
-  productOriginUrl.pathname !== '/' ||
-  productOriginUrl.search ||
-  productOriginUrl.hash
-) {
-  throw new Error(
-    'VITE_PRODUCT_ORIGIN must be a canonical HTTP(S) origin without a trailing slash, path, query, or fragment',
-  );
-}
-
-export default defineConfig({
-  plugins: [
-    {
-      name: 'product-origin',
-      transformIndexHtml(html) {
-        return html.replaceAll('%PRODUCT_ORIGIN%', productOriginUrl.origin);
-      },
-    },
-  ],
-  server: { port: 4174 },
-  preview: { port: 4174 },
+import { localPreviewApi } from './scripts/local-preview-api.mjs';
+export default defineConfig(({command}) => {
+  const local = command === 'serve';
+  const sample = local && process.env.EXALTO_LOCAL_PREVIEW === '1';
+  const capture = process.env.VITE_CAPTURE_ORIGIN ?? (local ? 'http://localhost:4174' : 'https://capture.exalto.ai');
+  const website = process.env.VITE_WEBSITE_ORIGIN ?? (local ? 'http://localhost:4175' : 'https://exalto.ai');
+  const api = sample ? '' : process.env.VITE_API_ORIGIN ?? (local ? 'http://localhost:8080' : 'https://api.exalto.ai');
+  for (const value of [capture, website, ...(api ? [api] : [])]) {
+    const url = new URL(value);
+    if (!['https:', 'http:'].includes(url.protocol) || url.origin !== value) throw new Error('Site and API URLs must be canonical HTTP(S) origins');
+  }
+  return {
+    resolve: { alias: { '@': resolve(import.meta.dirname, 'src/tools') } },
+    define: { __CAPTURE_ORIGIN__: JSON.stringify(capture), __WEBSITE_ORIGIN__: JSON.stringify(website), __API_ORIGIN__: JSON.stringify(api), __PUBLIC_ORIGIN__: JSON.stringify(capture), __LOCAL_PREVIEW__: JSON.stringify(sample), __BRAND_ASSET_VERSION__: JSON.stringify('capture') },
+    plugins: [react(), tailwindcss(), ...(sample ? [localPreviewApi({capture, seal: website})] : []), {
+      name: 'site-html',
+      transformIndexHtml: html => html.replaceAll('%PRODUCT_ORIGIN%', capture).replaceAll('%PUBLIC_ORIGIN%', capture).replaceAll('%BRAND_ASSET_VERSION%', 'capture'),
+      configureServer(server) { server.middlewares.use((req, _res, next) => { if (/^\/(traces|registry|verify)\/?(?:\?|$)|^\/s\/[^/]+\/?(?:\?|$)/.test(req.url ?? '')) req.url = '/tools.html'; next(); }); },
+    }],
+    build: {rollupOptions: {input: {marketing: resolve(import.meta.dirname, 'index.html'), tools: resolve(import.meta.dirname, 'tools.html')}}},
+    server: {host: 'localhost', port: 4175, strictPort: true},
+    preview: {host: 'localhost', port: 4175, strictPort: true},
+  };
 });
