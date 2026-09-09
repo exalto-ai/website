@@ -1,0 +1,17 @@
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/instrument-sans';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-ext-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import '@fontsource/ibm-plex-mono/latin-ext-500.css';
+import '../shadcn.css';
+import '../action-tokens.css';
+import '../styles.css';
+import '../trace.css';
+import '../legal.css';
+import '../notaries.css';
+import '../axis.css';
+import '../verification.css';
+import '../sharing.css';
+import '../app-surface.css';

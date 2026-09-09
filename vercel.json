@@ -1,18 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "redirects": [
-    {
-      "source": "/docs",
-      "destination": "https://seal.exalto.ai/docs",
-      "permanent": true
-    },
-    {
-      "source": "/docs/(.*)",
-      "destination": "https://seal.exalto.ai/docs/$1",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/assets/:path*",
@@ -40,6 +28,33 @@
           "value": "public, max-age=86400"
         }
       ]
+    },
+    {
+      "source": "/s/:traceId",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/traces",
+      "destination": "/tools.html"
+    },
+    {
+      "source": "/registry",
+      "destination": "/tools.html"
+    },
+    {
+      "source": "/verify",
+      "destination": "/tools.html"
+    },
+    {
+      "source": "/s/:traceId",
+      "destination": "/tools.html"
     }
   ]
 }

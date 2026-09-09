@@ -19,10 +19,13 @@ A trace proves presence, never absence. It proves the disclosed bytes traveled a
 
 ## Links
 
-- Docs and spec: https://seal.exalto.ai/docs
-- Hosted product: https://seal.exalto.ai
-- Verify a trace: https://seal.exalto.ai/verify
-- Example traces: https://seal.exalto.ai/traces
-- Notary registry: https://seal.exalto.ai/registry
+- Docs and spec: https://capture.exalto.ai/docs
+- Hosted product: https://exalto.ai
+- Verify a trace: https://exalto.ai/verify
+- Example traces: https://exalto.ai/traces
+- Notary registry: https://exalto.ai/registry
 - Open runtime: https://github.com/exalto-ai/notary-runtime
 - TLSNotary: https://tlsnotary.org
+
+Public tools: /traces, /registry, /verify. Public trace details: /s/{trace_id}.
+Public tools call https://api.exalto.ai directly. Verification uploads require consent.
