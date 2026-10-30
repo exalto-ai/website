@@ -33,6 +33,7 @@ const banned = [
   [/preserves privilege/i, 'preserves privilege'],
   [/receipts for AI work/i, 'receipts for AI work'],
   [/Was this AI/i, 'Was this AI'],
+  [/Exalto Notary Protocol|\bENP\b/i, 'Exalto Notary Protocol or ENP (retired; say Exalto Capture Protocol or ECP)'],
   [/[—–]/, 'em- or en-dash in rendered copy'],
 ];
 
@@ -47,7 +48,7 @@ for (const [pattern, label] of banned) {
 }
 
 const legalFooter =
-  'Exalto Seal is not a notary public. Sealing is not a notarial act. A receipt is cryptographic evidence, not a legal instrument. The ENP specification uses "notary" as a technical role term, in the way public-key infrastructure uses "certificate authority."';
+  'Exalto Seal is not a notary public. Sealing is not a notarial act. A receipt is cryptographic evidence, not a legal instrument. The ECP specification uses "notary" as a technical role term, in the way public-key infrastructure uses "certificate authority."';
 
 const required = [
   legalFooter,
