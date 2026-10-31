@@ -12,8 +12,6 @@ afterEach(async () => {
     element.remove();
   });
   window.history.replaceState({}, '', '/');
-  window.localStorage.removeItem('notary-theme');
-  window.localStorage.removeItem('notary-session');
   await page.viewport(1280, 900);
 });
 const libraryShares = Array.from({ length: 20 }, (_, index) => ({
