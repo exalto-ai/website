@@ -459,7 +459,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Consume a ticket using the requested notary admission contract */
+        /** Consume a ticket for one notary operation */
         post: operations["redeem_admission"];
         delete?: never;
         options?: never;
@@ -827,15 +827,9 @@ export interface components {
             max_attestable_http_bytes: number;
             /** Format: int64 */
             max_frame_bytes: number;
-            /** Format: int64 */
-            max_private_chunk_bytes: number;
-            /** Format: int64 */
-            max_private_chunk_commitments: number;
         };
         /** @enum {string} */
         AdmissionMode: "capture" | "notarization";
-        /** @enum {string} */
-        AdmissionRedemptionContract: "one_operation_v2";
         AdmissionTicketResponse: {
             /** Format: int64 */
             expires_at: number;
@@ -1334,17 +1328,11 @@ export interface components {
         /** @enum {string} */
         PurchaseState: "creating" | "checkout_open" | "paid" | "failed" | "refunded" | "disputed";
         RedeemAdmissionRequest: {
-            contract: components["schemas"]["AdmissionRedemptionContract"];
             mode: components["schemas"]["AdmissionMode"];
             notary_instance_id: string;
             /** Format: int64 */
             registry_generation: number;
             ticket: string;
-            /**
-             * @description The caller durably settles usage by operation ID. The stop-legacy
-             *     contract requires this capability for every admitted operation.
-             */
-            usage_settlement: boolean;
         };
         RedeemedOperationResponse: {
             /** Format: int64 */
@@ -1353,10 +1341,6 @@ export interface components {
             max_attestable_http_bytes: number;
             /** Format: int64 */
             max_frame_bytes: number;
-            /** Format: int64 */
-            max_private_chunk_bytes: number;
-            /** Format: int64 */
-            max_private_chunk_commitments: number;
             /** Format: int64 */
             notarization_allowance_bytes?: number | null;
             operation_id: string;

@@ -15,7 +15,7 @@ function normalizeHostedRegistry(payload: HostedRegistry): HostedRegistry {
   if (
     !payload ||
     typeof payload !== 'object' ||
-    payload.format !== 'notary/registry/v1' ||
+    payload.format !== 'ecp/registry/v1' ||
     !Array.isArray(payload.notaries) ||
     !Number.isSafeInteger(payload.generation) ||
     payload.generation < 0 ||

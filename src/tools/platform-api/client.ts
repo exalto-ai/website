@@ -1,7 +1,7 @@
 import createClient from 'openapi-fetch';
 import type { components, paths } from './generated/api.generated';
 
-export const apiOrigin = typeof __API_ORIGIN__ === 'string' ? __API_ORIGIN__ : 'https://api.exalto.ai';
+export const apiOrigin = typeof __API_ORIGIN__ === 'string' ? __API_ORIGIN__ : 'https://api.capture.exalto.ai';
 export const apiHref = (path: string) => new URL(path, apiOrigin || window.location.origin).href;
 const client = createClient<paths>({ baseUrl: apiOrigin, credentials: 'include' });
 

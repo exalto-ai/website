@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api.exalto.ai",
+      "url": "https://api.capture.exalto.ai",
       "description": "Exalto Seal"
     }
   ],
@@ -1934,7 +1934,7 @@
         "tags": [
           "notary-admission"
         ],
-        "summary": "Consume a ticket using the requested notary admission contract",
+        "summary": "Consume a ticket for one notary operation",
         "operationId": "redeem_admission",
         "requestBody": {
           "content": {
@@ -3838,9 +3838,7 @@
         "type": "object",
         "required": [
           "max_attestable_http_bytes",
-          "max_frame_bytes",
-          "max_private_chunk_bytes",
-          "max_private_chunk_commitments"
+          "max_frame_bytes"
         ],
         "properties": {
           "max_attestable_http_bytes": {
@@ -3848,14 +3846,6 @@
             "format": "int64"
           },
           "max_frame_bytes": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "max_private_chunk_bytes": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "max_private_chunk_commitments": {
             "type": "integer",
             "format": "int64"
           }
@@ -3866,12 +3856,6 @@
         "enum": [
           "capture",
           "notarization"
-        ]
-      },
-      "AdmissionRedemptionContract": {
-        "type": "string",
-        "enum": [
-          "one_operation_v2"
         ]
       },
       "AdmissionTicketResponse": {
@@ -5664,14 +5648,9 @@
           "ticket",
           "notary_instance_id",
           "mode",
-          "registry_generation",
-          "contract",
-          "usage_settlement"
+          "registry_generation"
         ],
         "properties": {
-          "contract": {
-            "$ref": "#/components/schemas/AdmissionRedemptionContract"
-          },
           "mode": {
             "$ref": "#/components/schemas/AdmissionMode"
           },
@@ -5685,10 +5664,6 @@
           },
           "ticket": {
             "type": "string"
-          },
-          "usage_settlement": {
-            "type": "boolean",
-            "description": "The caller durably settles usage by operation ID. The stop-legacy\ncontract requires this capability for every admitted operation."
           }
         }
       },
@@ -5698,9 +5673,7 @@
           "operation_id",
           "activation_deadline",
           "max_attestable_http_bytes",
-          "max_frame_bytes",
-          "max_private_chunk_bytes",
-          "max_private_chunk_commitments"
+          "max_frame_bytes"
         ],
         "properties": {
           "activation_deadline": {
@@ -5712,14 +5685,6 @@
             "format": "int64"
           },
           "max_frame_bytes": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "max_private_chunk_bytes": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "max_private_chunk_commitments": {
             "type": "integer",
             "format": "int64"
           },

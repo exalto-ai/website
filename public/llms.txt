@@ -28,4 +28,4 @@ A trace proves presence, never absence. It proves the disclosed bytes traveled a
 - TLSNotary: https://tlsnotary.org
 
 Public tools: /traces, /registry, /verify. Public trace details: /s/{trace_id}.
-Public tools call https://api.exalto.ai directly. Verification uploads require consent.
+Public tools call https://api.capture.exalto.ai directly. Verification uploads require consent.

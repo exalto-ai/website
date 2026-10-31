@@ -8,7 +8,7 @@ Capture account application. Capture docs and downloads are linked at
 Run `npm ci`, `npm run dev` (localhost:4175), or `npm run dev:sample` for labeled
 synthetic data with writes disabled. The normal dev API is localhost:8080.
 `VITE_API_ORIGIN`, `VITE_CAPTURE_ORIGIN`, and `VITE_WEBSITE_ORIGIN` configure
-origins. Production defaults are api.exalto.ai, capture.exalto.ai, and exalto.ai.
+origins. Production defaults are api.capture.exalto.ai, capture.exalto.ai, and exalto.ai.
 Build with `npm run build`; run browser checks with `npm test` and route checks
 with `npm run test:redirects`.
 
