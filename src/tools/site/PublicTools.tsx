@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getListedTraces } from '../platform-api/client';
 import './siteStyles';
-import { initialThemePreference, resolvedTheme } from '../theme';
 import { RegistryPage } from './RegistryPage';
 import { currentRoute } from './navigation';
 import { captureHref } from './origins';
@@ -31,15 +30,8 @@ export function PublicTools({
     };
   }, []);
   useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-    const apply = () => {
-      const theme = resolvedTheme(initialThemePreference(), media.matches);
-      document.documentElement.dataset.theme = theme;
-      document.documentElement.style.colorScheme = theme;
-    };
-    apply();
-    media.addEventListener('change', apply);
-    return () => media.removeEventListener('change', apply);
+    document.documentElement.dataset.theme = 'light';
+    document.documentElement.style.colorScheme = 'light';
   }, []);
   useEffect(() => {
     const title = traceId

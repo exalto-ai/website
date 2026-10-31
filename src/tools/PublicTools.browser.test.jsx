@@ -12,8 +12,6 @@ afterEach(async () => {
     element.remove();
   });
   window.history.replaceState({}, '', '/');
-  window.localStorage.removeItem('notary-theme');
-  window.localStorage.removeItem('notary-session');
   await page.viewport(1280, 900);
 });
 const libraryShares = Array.from({ length: 20 }, (_, index) => ({
@@ -182,7 +180,7 @@ test('presents the official Registry as named operators, keys, and trust history
     render(
       <RegistryPage
         loadRegistry={async () => ({
-          format: 'notary/registry/v1',
+          format: 'ecp/registry/v1',
           generation: 7,
           active_key_id: activeKeyId,
           notaries: [
@@ -436,7 +434,7 @@ test('puts the disclosed conversation before collapsible evidence and tools', as
       content_sha256: 'b'.repeat(64),
       package_size_bytes: 4096,
       package_sha256: 'c'.repeat(64),
-      disclosure_safety_version: 'notary/public-package-safety/v1',
+      disclosure_safety_version: 'ecp/public-package-safety/v1',
       disclosure_safety_override: false,
       trace_url: '/api/public/traces/share-12/trace.otlp.json',
       package_url: '/api/public/traces/share-12/package.llmtrace',
@@ -590,7 +588,7 @@ test('opens a protected trace in memory and submits a bounded report', async () 
         content_sha256: 'b'.repeat(64),
         package_size_bytes: 2048,
         package_sha256: 'c'.repeat(64),
-        disclosure_safety_version: 'notary/public-package-safety/v1',
+        disclosure_safety_version: 'ecp/public-package-safety/v1',
         disclosure_safety_override: false,
         trace_url: '/api/public/traces/protected-share/trace.otlp.json',
         package_url: '/api/public/traces/protected-share/package.llmtrace',

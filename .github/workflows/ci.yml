@@ -25,5 +25,5 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - name: Verify legacy documentation redirects
+      - name: Verify Vercel routes and headers
         run: npm run test:redirects
